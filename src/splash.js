@@ -1,4 +1,4 @@
-import React, { useEffect, useState, img } from 'react';
+import React, { useEffect, useState } from 'react';
 import './splash.css';
 import logo from './logo.svg';
 
@@ -22,7 +22,7 @@ const SplashScreen = () => {
         <div className='linhas4'></div>
 
         <section className='icon'>
-          <img src={logo} class="img-responsive" alt="Image" ></img>
+          <img src={logo} className="img-responsive" alt="Logo da empresa"></img>
           <h1 className='titulo'>ecom</h1>
         </section>
 
