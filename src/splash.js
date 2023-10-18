@@ -8,7 +8,7 @@ const SplashScreen = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Tempo em milissegundos para exibir a tela de splash
+    }, 1000); // Tempo em milissegundos para exibir a tela de splash
 
     return () => clearTimeout(timer);
   }, []);

@@ -1,5 +1,113 @@
-.mapa{
-    background-color: #022B3A;
-    width: 300px;
-    height: 400px;
+.mapa {
+  display: flex;
+  background-color: #022b3a;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+}
+
+.MapaConteiner {
+  width: 75%;
+  height: 98vh;
+  border-radius: 5px;
+}
+
+#tipoDeTelas {
+  display: flex;
+  height: 98vh;
+  margin: 10px;
+  align-items: center;
+  flex-direction: column;
+}
+
+#telaPosto {
+  display: flex;
+  height: 88vh;
+}
+
+
+/* //////////////////////////////////////////////////*/
+
+
+.postos {
+  display: flex;
+  width: 320px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 5.488px;
+  background: #e1e5f2;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.iconPosto {
+  width: 70px;
+  height: 70;
+  flex-shrink: 0;
+}
+
+.descricaoPosto {
+  justify-content: center;
+  align-items: flex-start;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: monospace;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  margin: 0px;
+}
+
+.descricaoText{
+    font-size: 13px;
+}
+
+.precoPosto {
+  display: flex;
+  width: 80px;
+  height: 93.841px;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.precos{
+    color: #1F7A8C;
+}
+
+.diasAtras {
+  font-size: 12px;
+}
+
+p {
+  margin: 0;
+}
+
+
+/* //////////////////////////////////////////////////*/
+
+#menu {
+  padding: 2px;
+  display: flex;
+  width: 320px;
+  height: 55px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #1f7a8c;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.imgs {
+  transition: 0.5s;
+  opacity: 0.5;
+  padding: 5px;
+}
+
+.imgs:hover {
+  transition: 0.3s;
+  opacity: 5;
+  border-bottom: 2px solid #f7fdff;
+  border-radius: 1px;
 }

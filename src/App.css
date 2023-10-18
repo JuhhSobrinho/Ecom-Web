@@ -30,6 +30,7 @@
 }
 
 .header {
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,7 +41,7 @@
   height: 607px;
   flex-shrink: 0;
   background-color: #1f7a8c;
-  box-shadow: 10px 0px 77px #000000;
+  box-shadow: -3px 0px 77px #000000;
 }
 
 .titulo {
@@ -69,12 +70,13 @@
 }
 
 .login {
+  z-index: 1;
   width: 593px;
   height: 607px;
   flex-shrink: 0;
   background-color: #022b3a;
   border-radius: 0px 5px 5px 0px;
-  box-shadow: 20px 0px 77px #000000;
+  box-shadow: -2px 0px 78px #000000;
   display: flex;
   text-align: center;
   align-items: flex-end;
@@ -181,4 +183,12 @@
   font-weight: 400;
   border: none;
   cursor: pointer;
+}
+
+#singUpBotaoColor{
+  background-color: #022b3a;
+}
+
+#loginBotaoColor{
+  background-color: #1f7a8c;
 }
