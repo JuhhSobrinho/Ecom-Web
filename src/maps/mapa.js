@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import 'leaflet/dist/leaflet.css';
 import "./mapa.css"
-import { Link } from 'react-router-dom';
 import L from 'leaflet';
-
+import { MenuGuias } from "../menu/menu";
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
@@ -19,10 +18,6 @@ function Maps() {
       iconAnchor: [0, 6], // Ponto de ancoragem do ícone (onde ele se conecta ao marcador)
       popupAnchor: [0, 0], // Ponto de ancoragem do popup (onde ele se conecta ao marcador)
     });
-
-    const botaoCordenada = () => {
-        setCordenadas([-22.92321544853484, -45.458332700618065]); // Atualize as coordenadas corretamente
-      }
     
 
     return (
@@ -40,51 +35,10 @@ function Maps() {
             </MapContainer>
 
 
+            {MenuGuias(setCordenadas)}
 
 
 
-            <div id="tipoDeTelas">
-
-
-
-
-                <div id="telaPosto">
-                    <div className="postos" onClick={botaoCordenada}>
-                        <div className="iconPosto">
-                            <img src="../../img/shell.png" alt="iconDoPostoShell" />
-                        </div>
-                        <div className="descricaoPosto">
-                            <span className="nomeDoPosto">POSTO GUERREIRO</span>
-                            <p className="descricaoText">R. Prudente de Moraes, 425 - Centro, Pindamonhangaba - SP, 12400-230</p>
-                        </div>
-                        <div className="precoPosto">
-                            <span className="precos">R$ 3,80</span>
-                            <p className="diasAtras">20 dias atrás</p>
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-                <div id="menu">
-                    <Link to="/">
-                        <img src="../../img/map.png" alt="menuMapa" className="imgs" />
-                    </Link>
-                    <Link to="/">
-                        <img src="../../img/posto.png" alt="menuPosto" className="imgs" />
-                    </Link>
-                    <Link to="/">
-                        <img src="../../img/add.png" alt="menuAdicionarSugerirPosto" className="imgs" />
-                    </Link>
-                    <Link to="/">
-                        <img src="../../img/salvo.png" alt="menuPostosSalvos" className="imgs" />
-                    </Link>
-                    <Link to="/">
-                        <img src="../../img/config.png" alt="menuConfiguração" className="imgs" />
-                    </Link>
-                </div>
-            </div>
 
         </div>
     );
