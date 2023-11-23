@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SplashScreen from './splash';
 import SignUpCadastro from './signUp';
 import LoginEntra from './login';
-import Maps from './maps/mapa';
+import {Maps} from './maps/mapa.js';
 
 
 function App() {

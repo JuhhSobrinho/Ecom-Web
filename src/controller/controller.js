@@ -3,13 +3,11 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../model/model';
 import {  } from "../maps/mapa.css";
 
-export function PostosCards() {
-  const [postos, setPostos] = useState([]);
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
-  const botaoCordenada = (lat, long) => {
-    console.log(lat, long);  // Ajuste na chamada da função
-    
-  };
+
+export function MapsCards() {
+  const [postos, setPostos] = useState([]);
 
   useEffect(() => {
     const fetchPostos = async () => {
@@ -44,26 +42,20 @@ export function PostosCards() {
   }, []); // Execute apenas uma vez ao montar o componente
 
 
-  return (
+ return (
     <div id="telaPosto">
       {postos.map((posto) => (
-        <div key={posto.id} className="postos" onClick={() => botaoCordenada(posto.localLa, posto.localLo)}>
-          <div className="iconPosto">
-          <img src={`../../img/${posto.bandeira}.png`} alt="iconDoPosto" className='iconBand' />
-          </div>
-          <div className="descricaoPosto">
-            <span className="nomeDoPosto">{posto.nome}</span>
-            <p className="descricaoText">{posto.endereco}</p>
-          </div>
-          <div className="precoPosto">
-            <span className="precos"></span>
-            <p className="precos">{posto.precoD} Disel</p>
-            <p className="precos">{posto.precoE} Etana</p>
-            <p className="precos">{posto.precoG} Gasol</p>
-            <p className="diasAtras">{posto.date.toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}</p>
-
-          </div>
-        </div>
+            <MapContainer center={(posto.localLa, posto.localLo)} zoom={14} className='MapaConteiner'>
+                <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                />
+                <Marker position={posto.localLa} icon={`../../img/${posto.bandeira}.png`}>
+                    <Popup>
+                        Um marcador personalizado com um ícone.
+                    </Popup>
+                </Marker>
+            </MapContainer>
       ))}
     </div>
   );

@@ -6,7 +6,6 @@ import { AddPosto } from "../add/add";
 import { SalvosPostos } from "../salvos/salvos";
 import { UserConfig } from "../user/user";
 import { MediaPreco } from "../media/media";
-import {  } from "../model/model";
 
 
 export function MenuGuias(setCordenadas) {

@@ -3,13 +3,17 @@ import 'leaflet/dist/leaflet.css';
 import "./mapa.css"
 import L from 'leaflet';
 import { MenuGuias } from "../menu/menu";
+import { MapsCards } from "../controller/controller.js";
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
-function Maps() {
-    const [getCordenadas, setCordenadas] = useState([-22.9236, -45.4598]); // Inicialize as coordenadas corretamente
-    const position = [-22.92321544853484, -45.458332700618065];
+export function Maps(lat, log) {
+    const [cordenadas, setCordenadas] = useState([-22.9236, -45.4598]); // Inicialize as coordenadas corretamente
+    const position = cordenadas;
     const iconUrl = '../../img/shell.png';
+
+
+    console.log(lat, log);
 
     // Configurações do ícone personalizado
     const customIcon = L.icon({
@@ -22,7 +26,7 @@ function Maps() {
 
     return (
         <div className='mapa'>
-            <MapContainer center={getCordenadas} zoom={14} className='MapaConteiner'>
+            <MapContainer center={cordenadas} zoom={14} className='MapaConteiner'>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -34,6 +38,8 @@ function Maps() {
                 </Marker>
             </MapContainer>
 
+            {MapsCards}
+            
 
             {MenuGuias(setCordenadas)}
 
@@ -43,5 +49,3 @@ function Maps() {
         </div>
     );
 }
-
-export default Maps;

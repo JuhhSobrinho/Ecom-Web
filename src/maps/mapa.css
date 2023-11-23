@@ -22,6 +22,8 @@
 
 #telaPosto {
   display: flex;
+  overflow:auto; 
+  flex-direction: column;
   height: 88vh;
 }
 
@@ -39,12 +41,21 @@
   flex-direction: row;
   align-items: center;
   cursor: pointer;
+  margin: 2px;
 }
 
 .iconPosto {
   width: 70px;
-  height: 70;
+  height: 70px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconBand{
+  width: 60px;
+  height: 60px;
 }
 
 .descricaoPosto {
@@ -59,17 +70,23 @@
   margin: 0px;
 }
 
+.nomeDoPosto{
+  font-size: 18px;
+  color: #1F7A8C;
+}
+
 .descricaoText{
     font-size: 13px;
 }
 
 .precoPosto {
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 80px;
   height: 93.841px;
   flex-shrink: 0;
   flex-direction: column;
-  justify-content: center;
 }
 
 .precos{
