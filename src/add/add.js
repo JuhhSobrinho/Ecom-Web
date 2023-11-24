@@ -1,6 +1,8 @@
-import React from 'react';
-import 'leaflet/dist/leaflet.css';
-import "../maps/mapa.css";
+import React, { useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../model/model';
+import {  } from "../maps/mapa.css";
+import { botaoCordenada } from "../maps/mapa.js";
 
 export function AddPosto(setCordenadas) {
 

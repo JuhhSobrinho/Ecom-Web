@@ -1,51 +1,78 @@
-import React, { useState } from 'react';
-import 'leaflet/dist/leaflet.css';
+import React, { useEffect } from 'react';
 import "./mapa.css"
+import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import { MenuGuias } from "../menu/menu";
-import { MapsCards } from "../controller/controller.js";
-
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-
-export function Maps(lat, log) {
-    const [cordenadas, setCordenadas] = useState([-22.9236, -45.4598]); // Inicialize as coordenadas corretamente
-    const position = cordenadas;
-    const iconUrl = '../../img/shell.png';
+import { MenuGuias } from "../menu/menu";
+import { querySnapshot } from "../controller/controller";
 
 
-    console.log(lat, log);
+let array = [-22.9236, -45.4598];
+console.log("antes",array);
+export const botaoCordenada = (lat, long) => {
+    array = [lat, long];
+    console.log("depois",array);
+};
 
-    // Configurações do ícone personalizado
-    const customIcon = L.icon({
-      iconUrl,
-      iconSize: [25, 25], // Tamanho da imagem do ícone em pixels
-      iconAnchor: [0, 6], // Ponto de ancoragem do ícone (onde ele se conecta ao marcador)
-      popupAnchor: [0, 0], // Ponto de ancoragem do popup (onde ele se conecta ao marcador)
-    });
-    
+export function Maps() {
+    const markers = [];
+    console.log("depoisdepois",array);
+
+    useEffect(() => {
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+            const data = doc.data();
+            const positions = [data.localizacao.latitude, data.localizacao.longitude];
+
+            const iconUrl = `../../img/${data.bandeira}.png`;  // Caminho da imagem dinâmico
+
+            const customIcon = L.icon({
+                iconUrl,
+                iconSize: [35, 35],
+                iconAnchor: [0, 6],
+                popupAnchor: [0, 0],
+            });
+
+            var idKey = "BandPosto" + data.id;
+
+            markers.push(
+                <Marker key={idKey} position={positions} icon={customIcon}>
+                    <Popup className='popupMarker'>
+                        <div key={doc.id} className="postos">
+                            <div className="iconPosto">
+                                <img src={`../../img/${data.bandeira}.png`} alt="iconDoPosto" className='iconBand' />
+                            </div>
+                            <div className="descricaoPosto">
+                                <span className="nomeDoPosto">{data.nome}</span>
+                                <p className="descricaoText">{data.endereco}</p>
+                            </div>
+                            <div className="precoPosto">
+                                <span className="precos"></span>
+                                <p className="precos">{data.preco.diesel} Disel</p>
+                                <p className="precos">{data.preco.etanol} Etana</p>
+                                <p className="precos">{data.preco.gaso} Gasol</p>
+                                <p className="diasAtras">{data.date.toDate().toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}</p>
+                            </div>
+                        </div>
+                    </Popup>
+                </Marker>
+            );
+        });
+    }, []);
 
     return (
         <div className='mapa'>
-            <MapContainer center={cordenadas} zoom={14} className='MapaConteiner'>
+            <MapContainer center={array} zoom={14} className='MapaConteiner'>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
-                <Marker position={position} icon={customIcon}>
-                    <Popup>
-                        Um marcador personalizado com um ícone.
-                    </Popup>
-                </Marker>
+                <div id="bands">
+                    {markers}
+                </div>
             </MapContainer>
 
-            {MapsCards}
-            
-
-            {MenuGuias(setCordenadas)}
-
-
-
-
+            {MenuGuias()}
         </div>
     );
 }

@@ -12,6 +12,14 @@
   border-radius: 5px;
 }
 
+.popupMarker {
+  margin-left: 20px;
+  border: 1px solid;
+  border-radius: 12px;
+  border-color: #1f7a8c;
+  box-shadow: 0px 0px 10px 1px #90d9e7;
+}
+
 #tipoDeTelas {
   display: flex;
   height: 98vh;
@@ -22,14 +30,12 @@
 
 #telaPosto {
   display: flex;
-  overflow:auto; 
+  overflow: auto;
   flex-direction: column;
   height: 88vh;
 }
 
-
 /* //////////////////////////////////////////////////*/
-
 
 .postos {
   display: flex;
@@ -53,7 +59,7 @@
   justify-content: center;
 }
 
-.iconBand{
+.iconBand {
   width: 60px;
   height: 60px;
 }
@@ -70,13 +76,13 @@
   margin: 0px;
 }
 
-.nomeDoPosto{
+.nomeDoPosto {
   font-size: 18px;
-  color: #1F7A8C;
+  color: #1f7a8c;
 }
 
-.descricaoText{
-    font-size: 13px;
+.descricaoText {
+  font-size: 13px;
 }
 
 .precoPosto {
@@ -87,10 +93,12 @@
   height: 93.841px;
   flex-shrink: 0;
   flex-direction: column;
+  height: 100px;
+  overflow: hidden;
 }
 
-.precos{
-    color: #1F7A8C;
+.precos {
+  color: #1f7a8c;
 }
 
 .diasAtras {
@@ -98,9 +106,8 @@
 }
 
 p {
-  margin: 0;
+  margin: 0px !important;
 }
-
 
 /* //////////////////////////////////////////////////*/
 

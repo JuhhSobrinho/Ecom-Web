@@ -1,62 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../model/model';
-import {  } from "../maps/mapa.css";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../model/model";
 
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+const auxPostoId = [];
 
+export const querySnapshot = await getDocs(collection(db, "postos"));
+querySnapshot.forEach((doc) => {
+  console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
 
-export function MapsCards() {
-  const [postos, setPostos] = useState([]);
-
-  useEffect(() => {
-    const fetchPostos = async () => {
-      const querySnapshot = await getDocs(collection(db, 'postos'));
-      const postosData = [];
-
-      querySnapshot.forEach((doc) => {
-        const dataFor = doc.data();
-        postosData.push({
-          id: doc.id,
-          nome: dataFor.nome,
-          endereco: dataFor.endereco,
-          bandeira: dataFor.bandeira,
-          precoD: dataFor.preco.diesel,
-          precoE: dataFor.preco.etanol,
-          precoG: dataFor.preco.gaso,
-          date: dataFor.date.toDate(),
-          localLa: dataFor.localizacao.latitude,
-          localLo: dataFor.localizacao.longitude,
+    auxPostoId.unshift(doc.id);
 
 
-          // Adicione outros campos conforme necessário
-        });
-        console.log("aqui",doc.data());
 
-      });
-
-      setPostos(postosData);
-    };
-
-    fetchPostos();
-  }, []); // Execute apenas uma vez ao montar o componente
+  for (let index = 0; index < auxPostoId.length; index++) {
+    const element = auxPostoId[index];
 
 
- return (
-    <div id="telaPosto">
-      {postos.map((posto) => (
-            <MapContainer center={(posto.localLa, posto.localLo)} zoom={14} className='MapaConteiner'>
-                <TileLayer
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                />
-                <Marker position={posto.localLa} icon={`../../img/${posto.bandeira}.png`}>
-                    <Popup>
-                        Um marcador personalizado com um ícone.
-                    </Popup>
-                </Marker>
-            </MapContainer>
-      ))}
-    </div>
-  );
-}
+
+    if (doc.id === element) {
+      const data = doc.data();
+
+      console.log("dataaa",data);
+
+     
+
+  }
+}});

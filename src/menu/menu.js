@@ -8,9 +8,7 @@ import { UserConfig } from "../user/user";
 import { MediaPreco } from "../media/media";
 
 
-export function MenuGuias(setCordenadas) {
-
-    const cordenada = setCordenadas;
+export function MenuGuias() {
 
     const [getGuias, setGuias] = useState('PostosCards');
 
@@ -21,11 +19,11 @@ export function MenuGuias(setCordenadas) {
 
 
     const guiasComponents = {
-        'Media': <MediaPreco setCordenadas={cordenada} />,
-        'PostosCards': <PostosCards setCordenadas={cordenada} />,
-        'AddPosto': <AddPosto setCordenadas={cordenada} />,
-        'SalvosPostos': <SalvosPostos setCordenadas={cordenada} />,
-        'UserConfig': <UserConfig setCordenadas={cordenada} />,
+        'Media': <MediaPreco/>,
+        'PostosCards': <PostosCards/>,
+        'AddPosto': <AddPosto/>,
+        'SalvosPostos': <SalvosPostos/>,
+        'UserConfig': <UserConfig/>,
     };
 
 

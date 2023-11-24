@@ -2,14 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../model/model';
 import {  } from "../maps/mapa.css";
+import { botaoCordenada } from "../maps/mapa.js";
 
 export function PostosCards() {
   const [postos, setPostos] = useState([]);
-
-  const botaoCordenada = (lat, long) => {
-    console.log(lat, long);  // Ajuste na chamada da função
-    
-  };
 
   useEffect(() => {
     const fetchPostos = async () => {
@@ -29,19 +25,14 @@ export function PostosCards() {
           date: dataFor.date.toDate(),
           localLa: dataFor.localizacao.latitude,
           localLo: dataFor.localizacao.longitude,
-
-
-          // Adicione outros campos conforme necessário
         });
-        console.log("aqui",doc.data());
-
       });
 
       setPostos(postosData);
     };
 
     fetchPostos();
-  }, []); // Execute apenas uma vez ao montar o componente
+  }, []);
 
 
   return (
@@ -61,7 +52,6 @@ export function PostosCards() {
             <p className="precos">{posto.precoE} Etana</p>
             <p className="precos">{posto.precoG} Gasol</p>
             <p className="diasAtras">{posto.date.toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}</p>
-
           </div>
         </div>
       ))}
