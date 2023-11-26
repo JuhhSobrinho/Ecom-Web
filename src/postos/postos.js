@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../model/model';
-import {  } from "../maps/mapa.css";
+import { } from "../maps/mapa.css";
 import { botaoCordenada } from "../maps/mapa.js";
 
 export function PostosCards() {
@@ -25,6 +25,7 @@ export function PostosCards() {
           date: dataFor.date.toDate(),
           localLa: dataFor.localizacao.latitude,
           localLo: dataFor.localizacao.longitude,
+          avaliacao: dataFor.avaliacao,
         });
       });
 
@@ -40,7 +41,20 @@ export function PostosCards() {
       {postos.map((posto) => (
         <div key={posto.id} className="postos" onClick={() => botaoCordenada(posto.localLa, posto.localLo)}>
           <div className="iconPosto">
-          <img src={`../../img/${posto.bandeira}.png`} alt="iconDoPosto" className='iconBand' />
+            <img src={`../../img/${posto.bandeira}.png`} alt="iconDoPosto" className='iconBand' />
+            <div className='backPorcento'>
+              <div className='star' style={{ width: `${100-(((posto.avaliacao) * 2) * 10)}%` }}>
+
+              </div>
+              <div className='Porcento'></div>
+              <div className='Porcento'></div>
+              <div className='Porcento'></div>
+              <div className='Porcento'></div>
+              <div className='Porcento'></div>
+
+
+            </div>
+
           </div>
           <div className="descricaoPosto">
             <span className="nomeDoPosto">{posto.nome}</span>
