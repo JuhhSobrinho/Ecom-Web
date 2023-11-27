@@ -10,6 +10,8 @@
   width: 75%;
   height: 98vh;
   border-radius: 5px;
+  z-index: 0;
+  position: relative;
 }
 
 .popupMarker {
@@ -35,8 +37,6 @@
   height: 88vh;
 }
 
-
-
 /* //////////////////////////////////////////////////*/
 
 /* Estiliza a barra de rolagem */
@@ -54,6 +54,12 @@
 }
 
 /* //////////////////////////////////////////////////*/
+
+.posto-main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
 .postos {
   display: flex;
@@ -80,8 +86,9 @@
 }
 
 .iconBand {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
 }
 
 .descricaoPosto {
@@ -129,6 +136,13 @@ p {
   margin: 0px !important;
 }
 
+.linha {
+  width: 200px;
+  height: 0.5px;
+  background: #1f7a8c;
+  margin: 2px;
+}
+
 /* //////////////////////////////////////////////////*/
 
 #menu {
@@ -160,7 +174,6 @@ p {
   border-radius: 1px;
 }
 
-
 .backPorcento {
   position: relative;
   width: 100%;
@@ -179,11 +192,217 @@ p {
 }
 
 .Porcento {
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%,50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%,50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%,50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%,
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%,
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%,
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
   top: 0;
   left: 0;
   width: 20px;
   height: 15px;
   background-color: #ff7b00;
   z-index: 1;
+}
+
+/*////////////////////////////////////////////////////////*/
+
+.VisuAddPosto{
+  transition: 1s;
+  z-index:3;
+  position: absolute;
+  top: 10px;
+  right: 350px;
+}
+
+#telaAdd {
+  display: flex;
+  width: 320px;
+  height: 530px;
+  flex-shrink: 0;
+  border-radius: 5.488px;
+  background: #e1e5f2;
+  flex-direction: column;
+  align-items: center;
+  margin: 2px;
+}
+
+.tipoBandeira {
+  width: 320px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.checkBand {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.iconDoPostoCheck {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.checkBoxStyle {
+  position: relative;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+}
+
+.checkBoxStyle::before {
+  content: "";
+  display: block;
+  position: relative;
+  width: 15px;
+  height: 15px;
+  background-color: #1f7a8c;
+  border-radius: 5px;
+}
+
+.checkBoxStyle:checked::after {
+  content: "";
+  display: block;
+  width: 2px;
+  height: 5px;
+  border: solid #90d9e7;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 4px;
+  left: 5px;
+}
+
+.TextDados {
+  margin: 10px;
+  width: 250px;
+  border-radius: 5.034px;
+  background: #1f7a8c;
+  padding: 5px;
+  border: 0px;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: monospace;
+}
+
+.avaliacaoRange {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.range-ava {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-block;
+  width: 18em;
+  height: 0.5em;
+  position: relative;
+  border-radius: 5px;
+  background-color: #90d9e7;
+  outline: none;
+  cursor: pointer;
+}
+
+.range-ava::-webkit-slider-thumb {
+  border-radius: 50%;
+}
+
+.precosAdd {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.precosDados{
+  display: flex;
+  align-items: center;
+}
+
+.inputPrecosAdd {
+  text-align: center;
+  margin: 10px;
+  color: #022b3a;
+  border: none;
+  background-color: transparent;
+  text-transform: none;
+  outline: none;
+  border-bottom: 1px solid #58a3be;
+  appearance: none;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.inputPrecosAdd::placeholder {
+  color: rgb(177, 177, 177);
+}
+
+.inputPrecosAdd::-webkit-inner-spin-button { 
+  -webkit-appearance: none;
+}
+
+.btnAdd{
+  transition: 1s;
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  background: #1f7a8c;
+  color: #fff;
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.btnAdd:hover{
+  transition: 1s;
+  box-shadow: 0px 0px 5px 1px #58a3be;
+  background: #022b3a;
 }
