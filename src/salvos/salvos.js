@@ -1,11 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../model/model';
-import {  } from "../maps/mapa.css";
-import { botaoCordenada } from "../maps/mapa.js";
+import { } from "../maps/mapa.css";
 
 export function SalvosPostos() {
   const [postos, setPostos] = useState([]);
+  const [statusCopiadoVisible, setStatusCopiadoVisible] = useState(false);
+
+  const copiaCola = async (postId) => {
+    // Lógica para copiar o texto...
+    try {
+      // Usa a API Clipboard para copiar o texto para a área de transferência
+      await navigator.clipboard.writeText(postId);
+
+      console.log("Texto copiado: ", postId);
+  } catch (err) {
+      console.error("Erro ao copiar texto: ", err);
+  }
+
+    // Atualiza o estado apenas para o card clicado
+    setStatusCopiadoVisible((prevStatus) => ({
+      ...prevStatus,
+      [postId]: true,
+    }));
+
+    // Esconde o status após algum tempo (por exemplo, 3 segundos)
+    setTimeout(() => {
+      setStatusCopiadoVisible((prevStatus) => ({
+        ...prevStatus,
+        [postId]: false,
+      }));
+    }, 3000);
+  };
 
   useEffect(() => {
     const fetchPostos = async () => {
@@ -38,9 +64,10 @@ export function SalvosPostos() {
   return (
     <div id="telaPosto">
       {postos.map((posto) => (
-        <div key={posto.id} className="postos" onClick={() => botaoCordenada(posto.localLa, posto.localLo)}>
+        <div key={posto.id} className="postos" onClick={() => copiaCola(posto.id)}>
           <div className="iconPosto">
-          <img src={`../../img/${posto.bandeira}.png`} alt="iconDoPosto" className='iconBand' />
+            <img src={`../../img/${posto.bandeira}.png`} alt="iconDoPosto" className='iconBand' />
+            <p className='diasAtras' style={{ display: statusCopiadoVisible[posto.id] ? 'flex' : 'none' }} id='statusCopiado'>copied!</p>
           </div>
           <div className="descricaoPosto">
             <span className="nomeDoPosto">{posto.nome}</span>

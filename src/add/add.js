@@ -1,30 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import React, { useState } from 'react';
+import { collection, addDoc, serverTimestamp, updateDoc , doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../model/model';
 import { } from "../maps/mapa.css";
 import { } from "../maps/mapa.js";
-import { logDOM } from '@testing-library/react';
+import { getLatLngFromAddress } from "../model/apiLatlon.js";
+import { toast } from 'react-toastify'; //npm install react-toastify
+import 'react-toastify/dist/ReactToastify.css';
 
 const timestamp = serverTimestamp();
 
 
-const addPostos = async () => {
+const addPostos = async (nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude) => {
+    console.log(nomePosto);
     try {
         const docRef = await addDoc(collection(db, "postos"), {
             id: "4",
-            nome: "Posto Lorinho",
-            endereco: "São Benedito, Pindamonhangaba - SP",
-            bandeira: "Sem Bandeira",
+            nome: nomePosto,
+            endereco: enderecoPosto,
+            bandeira: bandeirasSelecionadas,
             date: timestamp,
-            avaliacao: 4.6,
+            avaliacao: avaPosto,
             preco: {
-                diesel: 2,
-                gaso: 3.3,
-                etanol: 2.2,
+                diesel: precoDieselPosto,
+                gaso: precoGasoPosto,
+                etanol: precoEtanolPosto,
             },
             localizacao: {
-                latitude: -22.929056143453526,
-                longitude: -45.459355874909384,
+                latitude: latitude,
+                longitude: longitude,
             },
 
         });
@@ -35,7 +38,55 @@ const addPostos = async () => {
     }
 }
 
+const updatePosto = async (pesquisaid, nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude) => {
+    try {
+        // Obtenha a referência do documento que deseja atualizar
+        const docRefUp = doc(db, 'postos', pesquisaid);
+        // Atualize os dados do documento
+        await updateDoc(docRefUp, {
+            id: "8",
+            nome: nomePosto,
+            endereco: enderecoPosto,
+            bandeira: bandeirasSelecionadas,
+            date: timestamp,
+            avaliacao: avaPosto,
+            preco: {
+                diesel: precoDieselPosto,
+                gaso: precoGasoPosto,
+                etanol: precoEtanolPosto,
+            },
+            localizacao: {
+                latitude: latitude,
+                longitude: longitude,
+            },
+        });
+
+        console.log("Documento atualizado com sucesso!");
+        window.location.reload();
+    } catch (e) {
+        console.error("Erro ao atualizar documento: ", e);
+    }
+}
+
+let aux = 0;
+const deletePosto = async (pesquisaid, nomePosto) => {
+    const docRefDelet = doc(db, 'postos', pesquisaid);
+    aux += 1;
+    try{
+        if (aux === 2) {
+            await deleteDoc(docRefDelet);
+            console.log('Documento excluído com sucesso.');
+            window.location.reload();
+        } else{
+            alert(`Verificação Do ${nomePosto} : \n \n Precione 👇 mais uma vez o botão "DELETAR POSTO" para confirmar a exclução do posto`);
+        }
+    } catch (error) {
+        console.error('Erro ao excluir documento:', error);
+      }
+}
+
 export function AddPosto(setCordenadas) {
+    const [pesquisaid, setPesquisa] = useState([])
     const [bandeirasSelecionadas, setBandeirasSelecionadas] = useState(['Sem Bandeira']);
 
     const [avaliacao, setAvaliacao] = useState(5);
@@ -58,8 +109,81 @@ export function AddPosto(setCordenadas) {
     };
     function callAdd() {
         styleCard('350');
-        addPostos();
+        if (nomePosto !== "Nome Do Posto" && enderecoPosto !== "Endereço Do Posto") {
+            getLatLngFromAddress(enderecoPosto)
+                .then((cordenadas) => {
+                    // A Promise foi resolvida, agora você pode acessar as coordenadas
+                    if (cordenadas) {
+                        const { latitude, longitude } = cordenadas;
+                        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+                        let avaPosto = (avaliacao / 2);
+                        addPostos(nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude);
+
+                    }
+
+                })
+                .catch((error) => {
+                    console.error("Erro ao obter coordenadas: ", error);
+                    alert('Erro ao obter o endereço');
+                });
+        } else {
+            alert('Campo vazio');
+        }
     }
+
+    function callAtualiza() {
+        getLatLngFromAddress(enderecoPosto)
+        .then((cordenadas) => {
+            // A Promise foi resolvida, agora você pode acessar as coordenadas
+            if (cordenadas) {
+                const { latitude, longitude } = cordenadas;
+                console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+                let avaPosto = (avaliacao / 2);
+                updatePosto(pesquisaid,nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude);
+
+            }
+
+        })
+        .catch((error) => {
+            console.error("Erro ao obter coordenadas: ", error);
+            alert('Erro ao obter o endereço');
+        });
+    }
+
+    const handlePesquisa = async (event) => {
+        styleCard('5')
+        setPesquisa(event.target.value);
+        console.log(pesquisaid);
+
+        try {
+            const pesquisaid = event.target.value;
+    
+            const docRefRead = doc(db, 'postos', pesquisaid);
+    
+            const docSnapshot = await getDoc(docRefRead);
+    
+            // Verifica se o documento existe
+            if (docSnapshot.exists()) {
+                const data = docSnapshot.data();
+                console.log("Informações do Posto:", data);
+
+            setBandeirasSelecionadas(data.bandeira);
+            setNomePosto(data.nome);
+            setEnderecoPosto(data.endereco);
+            setAvaliacao(data.avaliacao*2);
+            setprecoDieselPosto(data.preco.diesel);
+            setprecoEtanolPosto(data.preco.etanol);
+            setprecoGasoPosto(data.preco.gaso);
+
+                // Aqui, você pode definir o estado ou realizar outras ações com as informações
+                // Exemplo: setNomeDoPosto(data.nome);
+            } else {
+                /**se caso não achar */
+            }
+        } catch (error) {
+            console.error("Erro ao buscar informações do posto:", error);
+        }
+    };
     const handleAvaliacaoChange = (event) => {
         styleCard('160')
         setAvaliacao(parseInt((event.target.value), 10));
@@ -100,7 +224,6 @@ export function AddPosto(setCordenadas) {
 
         // Verifica se a bandeira já está selecionada
         if (bandeirasSelecionadas.includes(value)) {
-            console.log(bandeirasSelecionadas);
             // Se estiver, remove a bandeira do estado
             setBandeirasSelecionadas(bandeirasSelecionadas.filter(bandeira => bandeira !== value));
         } else {
@@ -147,6 +270,10 @@ export function AddPosto(setCordenadas) {
                 </div>
             </div>
             <div id="telaAdd">
+                <div className='TextInput'>
+                    <input type="text" name="NomeDoPosto" id="PesquisaPosto" className="TextDados" value={pesquisaid} placeholder='Pesquisar a ID do posto 🔍' onChange={handlePesquisa} onClick={() => setPesquisa("")} />
+                </div>
+                <div className='linha'></div>
                 <div className='tipoBandeira'>
                     <div className='checkBand'>
                         <input
@@ -236,7 +363,9 @@ export function AddPosto(setCordenadas) {
                 <div className='linha'></div>
 
 
-                <button type="submit" class="btnAdd" onClick={callAdd}>Adicionar Posto</button>
+                <button type="submit" id='btnAdd' className="btnAdd" onClick={callAdd}>Adicionar Posto</button>
+                <button type="submit" id='btnAtuali' className="btnAdd" onClick={callAtualiza}>Atualizar Posto</button>
+                <button type="submit" id='btndelete' className="btnAdd" onClick={() => deletePosto(pesquisaid, nomePosto)}>Deletar Posto</button>
 
 
             </div>

@@ -2,10 +2,37 @@ import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../model/model';
 import { } from "../maps/mapa.css";
-import { botaoCordenada } from "../maps/mapa.js";
 
 export function PostosCards() {
   const [postos, setPostos] = useState([]);
+  const [statusCopiadoVisible, setStatusCopiadoVisible] = useState(false);
+
+
+  const copiaCola = async (postId) => {
+    // Lógica para copiar o texto...
+    try {
+      // Usa a API Clipboard para copiar o texto para a área de transferência
+      await navigator.clipboard.writeText(postId);
+
+      console.log("Texto copiado: ", postId);
+  } catch (err) {
+      console.error("Erro ao copiar texto: ", err);
+  }
+
+    // Atualiza o estado apenas para o card clicado
+    setStatusCopiadoVisible((prevStatus) => ({
+      ...prevStatus,
+      [postId]: true,
+    }));
+
+    // Esconde o status após algum tempo (por exemplo, 3 segundos)
+    setTimeout(() => {
+      setStatusCopiadoVisible((prevStatus) => ({
+        ...prevStatus,
+        [postId]: false,
+      }));
+    }, 3000);
+  };
 
   useEffect(() => {
     const fetchPostos = async () => {
@@ -39,9 +66,13 @@ export function PostosCards() {
   return (
     <div id="telaPosto">
       {postos.map((posto) => (
-        <div className='posto-main'>
-          <div key={posto.id} className="postos" onClick={() => botaoCordenada(posto.localLa, posto.localLo)}>
+        <div className='posto-main'  key={posto.id}>
+          <div className="postos" onClick={() => copiaCola(posto.id)}>
             <div className="iconPosto">
+              <div className='copy'>              
+                <img src={'../../img/copy.svg'} onClick={() => copiaCola(posto.id)} alt="Id-copiar" className='iconCopy' />
+                <p className='diasAtras' id='statusCopiado' style={{ display: statusCopiadoVisible[posto.id] ? 'flex' : 'none' }} >ID copied!</p>
+              </div>
               <img src={`../../img/${posto.bandeira}.png`} alt="iconDoPosto" className='iconBand' />
               <div className='backPorcento'>
                 <div className='star' style={{ width: `${100 - (((posto.avaliacao) * 2) * 10)}%` }}>

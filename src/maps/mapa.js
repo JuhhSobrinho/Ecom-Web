@@ -8,14 +8,38 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { MenuGuias } from "../menu/menu";
 import { querySnapshot } from "../controller/controller";
 
-
-export const botaoCordenada = (lat, long) => {
-    console.log("depois", lat, long);
-};
-
 export function Maps() {
     const [array, setArray] = useState([-22.9236, -45.4598]);
     const [postos, setPostos] = useState([]);
+    const [statusCopiadoVisible, setStatusCopiadoVisible] = useState(false);
+
+    const copiaCola = async (postId) => {
+        // Lógica para copiar o texto...
+        try {
+          // Usa a API Clipboard para copiar o texto para a área de transferência
+          await navigator.clipboard.writeText(postId);
+    
+          console.log("Texto copiado: ", postId);
+      } catch (err) {
+          console.error("Erro ao copiar texto: ", err);
+      }
+    
+        // Atualiza o estado apenas para o card clicado
+        setStatusCopiadoVisible((prevStatus) => ({
+          ...prevStatus,
+          [postId]: true,
+        }));
+    
+        // Esconde o status após algum tempo (por exemplo, 3 segundos)
+        setTimeout(() => {
+          setStatusCopiadoVisible((prevStatus) => ({
+            ...prevStatus,
+            [postId]: false,
+          }));
+        }, 3000);
+      };
+    
+
 
     useEffect(() => {
         querySnapshot.forEach((doc) => {
@@ -31,8 +55,7 @@ export function Maps() {
                 popupAnchor: [0, 0],
             });
 
-            var idKey = "BandPosto" + data.id;
-
+            const idKey = "6b,65,72" + doc.id;
             setPostos((prevPostos) => [...prevPostos, { id: idKey, positions, icon: customIcon, data }]);
         });
     }, []);
@@ -48,8 +71,12 @@ export function Maps() {
                     {postos.map(({ id, positions, icon, data }) => (
                         <Marker key={id} position={positions} icon={icon}>
                             <Popup className='popupMarker'>
-                                <div key={id} className="postos">
+                                <div className="postos" onClick={() => copiaCola(data.id)}>
                                     <div className="iconPosto">
+                                        <div className='copy'>
+                                            <img src={'../../img/copy.svg'} onClick={() => copiaCola(data.id)} alt="Id-copiar" className='iconCopy' />
+                                            <p className='diasAtras' style={{ display: statusCopiadoVisible[data.id] ? 'flex' : 'none' }} id='statusCopiado'>ID copied!</p>
+                                        </div>
                                         <img src={`../../img/${data.bandeira}.png`} alt="iconDoPosto" className='iconBand' />
                                         <div className='backPorcento'>
                                             <div className='star' style={{ width: `${100 - (((data.avaliacao) * 2) * 10)}%` }}>
@@ -86,5 +113,5 @@ export function Maps() {
             {MenuGuias(setArray)}
         </div>
     );
-    
+
 }

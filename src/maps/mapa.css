@@ -1,3 +1,7 @@
+:root{
+  width: 100%;
+}
+
 .mapa {
   display: flex;
   background-color: #022b3a;
@@ -32,9 +36,11 @@
 
 #telaPosto {
   display: flex;
+  align-items: center;
   overflow: auto;
   flex-direction: column;
-  height: 88vh;
+  height: 90vh;
+  width: 100%;
 }
 
 /* //////////////////////////////////////////////////*/
@@ -70,7 +76,7 @@
   background: #e1e5f2;
   flex-direction: row;
   align-items: center;
-  cursor: pointer;
+  cursor: auto;
   margin: 2px;
 }
 
@@ -85,6 +91,22 @@
   justify-content: center;
 }
 
+.copy{
+  display: flex;
+  width: 100%;
+}
+
+.iconCopy{
+  width: 15px;
+  height: 15px;
+  padding: 2px;
+  cursor: copy;
+}
+
+#statusCopiado{
+  color: #58a3be;
+}
+
 .iconBand {
   width: 50px;
   height: 50px;
@@ -92,6 +114,7 @@
 }
 
 .descricaoPosto {
+  width: 50%;
   justify-content: center;
   align-items: flex-start;
   color: rgba(0, 0, 0, 0.6);
@@ -249,13 +272,13 @@ p {
   z-index:3;
   position: absolute;
   top: 10px;
-  right: 350px;
+  right: 26%;
 }
 
 #telaAdd {
   display: flex;
-  width: 320px;
-  height: 530px;
+  width: 92%;
+  height: 100%;
   flex-shrink: 0;
   border-radius: 5.488px;
   background: #e1e5f2;
@@ -401,8 +424,20 @@ p {
   margin-top: 30px;
 }
 
-.btnAdd:hover{
+#btnAdd:hover{
+  transition: 1s;
+  box-shadow: 0px 0px 5px 1px #02a855;
+  background: #008141;
+}
+
+#btnAtuali:hover{
   transition: 1s;
   box-shadow: 0px 0px 5px 1px #58a3be;
   background: #022b3a;
+}
+
+#btndelete:hover{
+  transition: 1s;
+  box-shadow: 0px 0px 5px 1px #e63318;
+  background: #a31600;
 }
