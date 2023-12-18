@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import { collection, addDoc, serverTimestamp, updateDoc , doc, getDoc, deleteDoc } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, updateDoc, doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../model/model';
 import { } from "../maps/mapa.css";
 import { } from "../maps/mapa.js";
 import { getLatLngFromAddress } from "../model/apiLatlon.js";
-import { toast } from 'react-toastify'; //npm install react-toastify
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const timestamp = serverTimestamp();
 
 
 const addPostos = async (nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude) => {
-    console.log(nomePosto);
     try {
         const docRef = await addDoc(collection(db, "postos"), {
             id: "4",
@@ -31,7 +30,6 @@ const addPostos = async (nomePosto, enderecoPosto, bandeirasSelecionadas, avaPos
             },
 
         });
-        console.log("Document written with ID: ", docRef.id);
         window.location.reload();
     } catch (e) {
         console.error("Error adding document: ", e);
@@ -61,7 +59,6 @@ const updatePosto = async (pesquisaid, nomePosto, enderecoPosto, bandeirasSeleci
             },
         });
 
-        console.log("Documento atualizado com sucesso!");
         window.location.reload();
     } catch (e) {
         console.error("Erro ao atualizar documento: ", e);
@@ -72,17 +69,28 @@ let aux = 0;
 const deletePosto = async (pesquisaid, nomePosto) => {
     const docRefDelet = doc(db, 'postos', pesquisaid);
     aux += 1;
-    try{
+    try {
         if (aux === 2) {
             await deleteDoc(docRefDelet);
-            console.log('Documento excluído com sucesso.');
             window.location.reload();
-        } else{
-            alert(`Verificação Do ${nomePosto} : \n \n Precione 👇 mais uma vez o botão "DELETAR POSTO" para confirmar a exclução do posto`);
+        } else {
+            toast.info(`\n Precione 👇 mais uma vez o botão "DELETAR POSTO" para confirmar a exclução do ${nomePosto}`, {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 7000,
+                closeButton: false,
+                tema: "red",
+                style: {
+                    backgroundColor: '#022b3a',
+                    color: 'white',
+                },
+                progressBarStyle: {
+                    backgroundColor: 'green', // Cor da barra de tempo
+                },
+            });
         }
     } catch (error) {
         console.error('Erro ao excluir documento:', error);
-      }
+    }
 }
 
 export function AddPosto(setCordenadas) {
@@ -108,14 +116,13 @@ export function AddPosto(setCordenadas) {
         }
     };
     function callAdd() {
-        styleCard('350');
-        if (nomePosto !== "Nome Do Posto" && enderecoPosto !== "Endereço Do Posto") {
-            getLatLngFromAddress(enderecoPosto)
+        styleCard('420');
+        if (nomePosto !== "Nome Do Posto" && nomePosto !== '' && enderecoPosto !== "Endereço Do Posto" && enderecoPosto !== '') {
+            getLatLngFromAddress(enderecoPosto, nomePosto)
                 .then((cordenadas) => {
                     // A Promise foi resolvida, agora você pode acessar as coordenadas
                     if (cordenadas) {
                         const { latitude, longitude } = cordenadas;
-                        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
                         let avaPosto = (avaliacao / 2);
                         addPostos(nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude);
 
@@ -124,56 +131,71 @@ export function AddPosto(setCordenadas) {
                 })
                 .catch((error) => {
                     console.error("Erro ao obter coordenadas: ", error);
-                    alert('Erro ao obter o endereço');
                 });
         } else {
-            alert('Campo vazio');
+            toast.info(`Campo de texto vazio`, {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 7000,
+                closeButton: false,
+                tema: "red",
+                style: {
+                    backgroundColor: '#022b3a',
+                    color: 'white',
+                },
+                progressBarStyle: {
+                    backgroundColor: 'green', // Cor da barra de tempo
+                },
+            });
         }
     }
 
     function callAtualiza() {
+        styleCard('420');
         getLatLngFromAddress(enderecoPosto)
-        .then((cordenadas) => {
-            // A Promise foi resolvida, agora você pode acessar as coordenadas
-            if (cordenadas) {
-                const { latitude, longitude } = cordenadas;
-                console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-                let avaPosto = (avaliacao / 2);
-                updatePosto(pesquisaid,nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude);
+            .then((cordenadas) => {
+                // A Promise foi resolvida, agora você pode acessar as coordenadas
+                if (cordenadas) {
+                    const { latitude, longitude } = cordenadas;
+                    let avaPosto = (avaliacao / 2);
+                    updatePosto(pesquisaid, nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude);
 
-            }
+                }
 
-        })
-        .catch((error) => {
-            console.error("Erro ao obter coordenadas: ", error);
-            alert('Erro ao obter o endereço');
-        });
+            })
+            .catch((error) => {
+                console.error("Erro ao obter coordenadas: ", error);
+                alert('Erro ao obter o endereço');
+            });
+    }
+
+
+    function callDeleta() {
+        styleCard('420');
+        deletePosto(pesquisaid, nomePosto)
+
+
     }
 
     const handlePesquisa = async (event) => {
-        styleCard('5')
+        styleCard('0')
         setPesquisa(event.target.value);
-        console.log(pesquisaid);
-
         try {
             const pesquisaid = event.target.value;
-    
+
             const docRefRead = doc(db, 'postos', pesquisaid);
-    
+
             const docSnapshot = await getDoc(docRefRead);
-    
+
             // Verifica se o documento existe
             if (docSnapshot.exists()) {
                 const data = docSnapshot.data();
-                console.log("Informações do Posto:", data);
-
-            setBandeirasSelecionadas(data.bandeira);
-            setNomePosto(data.nome);
-            setEnderecoPosto(data.endereco);
-            setAvaliacao(data.avaliacao*2);
-            setprecoDieselPosto(data.preco.diesel);
-            setprecoEtanolPosto(data.preco.etanol);
-            setprecoGasoPosto(data.preco.gaso);
+                setBandeirasSelecionadas(data.bandeira);
+                setNomePosto(data.nome);
+                setEnderecoPosto(data.endereco);
+                setAvaliacao(data.avaliacao * 2);
+                setprecoDieselPosto(data.preco.diesel);
+                setprecoEtanolPosto(data.preco.etanol);
+                setprecoGasoPosto(data.preco.gaso);
 
                 // Aqui, você pode definir o estado ou realizar outras ações com as informações
                 // Exemplo: setNomeDoPosto(data.nome);
@@ -185,41 +207,36 @@ export function AddPosto(setCordenadas) {
         }
     };
     const handleAvaliacaoChange = (event) => {
-        styleCard('160')
+        styleCard('210')
         setAvaliacao(parseInt((event.target.value), 10));
     };
     const handleNomePosto = (event) => {
-        styleCard('90')
+        styleCard('130')
         setNomePosto(event.target.value);
-        console.log(nomePosto);
     };
     const handleNomeEndereco = (event) => {
-        styleCard('90')
+        styleCard('140')
         setEnderecoPosto(event.target.value);
-        console.log(enderecoPosto);
     };
 
 
     const handleprecoDieselPosto = (event) => {
-        styleCard('250')
+        styleCard('290')
         setprecoDieselPosto(event.target.value);
-        console.log(precoDieselPosto);
     };
     const handleprecoEtanolPosto = (event) => {
-        styleCard('250')
+        styleCard('290')
         setprecoEtanolPosto(event.target.value);
-        console.log(precoEtanolPosto);
     };
     const handleprecoGasoPosto = (event) => {
-        styleCard('250')
+        styleCard('290')
         setprecoGasoPosto(event.target.value);
-        console.log(precoGasoPosto);
     };
 
 
     const handleCheckboxChange = (event) => {
 
-        styleCard('10')
+        styleCard('40')
         const value = event.target.value;
 
         // Verifica se a bandeira já está selecionada
@@ -237,6 +254,7 @@ export function AddPosto(setCordenadas) {
     return (
         <div id="telaPosto">
             <div className='VisuAddPosto'>
+                <ToastContainer />
                 <div className='posto-main'>
                     <div className="postos">
                         <div className="iconPosto">
@@ -365,7 +383,7 @@ export function AddPosto(setCordenadas) {
 
                 <button type="submit" id='btnAdd' className="btnAdd" onClick={callAdd}>Adicionar Posto</button>
                 <button type="submit" id='btnAtuali' className="btnAdd" onClick={callAtualiza}>Atualizar Posto</button>
-                <button type="submit" id='btndelete' className="btnAdd" onClick={() => deletePosto(pesquisaid, nomePosto)}>Deletar Posto</button>
+                <button type="submit" id='btndelete' className="btnAdd" onClick={callDeleta}>Deletar Posto</button>
 
 
             </div>

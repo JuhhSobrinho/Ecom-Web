@@ -1,4 +1,4 @@
-:root{
+:root {
   width: 100%;
 }
 
@@ -8,6 +8,7 @@
   width: 100%;
   height: 100vh;
   align-items: center;
+  justify-content: space-around;
 }
 
 .MapaConteiner {
@@ -32,6 +33,7 @@
   margin: 10px;
   align-items: center;
   flex-direction: column;
+  width: 370px;
 }
 
 #telaPosto {
@@ -43,6 +45,8 @@
   width: 100%;
 }
 
+/* //////////////////////////////////////////////////*/
+/* //////////////////////////////////////////////////*/
 /* //////////////////////////////////////////////////*/
 
 /* Estiliza a barra de rolagem */
@@ -59,6 +63,8 @@
   background-color: transparent; /* Cor da trilha */
 }
 
+/* //////////////////////////////////////////////////*/
+/* //////////////////////////////////////////////////*/
 /* //////////////////////////////////////////////////*/
 
 .posto-main {
@@ -91,19 +97,19 @@
   justify-content: center;
 }
 
-.copy{
+.copy {
   display: flex;
   width: 100%;
 }
 
-.iconCopy{
+.iconCopy {
   width: 15px;
   height: 15px;
   padding: 2px;
   cursor: copy;
 }
 
-#statusCopiado{
+#statusCopiado {
   color: #58a3be;
 }
 
@@ -166,6 +172,8 @@ p {
   margin: 2px;
 }
 
+/* //////////////////////////////////////////////////*/
+/* //////////////////////////////////////////////////*/
 /* //////////////////////////////////////////////////*/
 
 #menu {
@@ -265,20 +273,22 @@ p {
   z-index: 1;
 }
 
-/*////////////////////////////////////////////////////////*/
+/* //////////////////////////////////////////////////*/
+/* //////////////////////////////////////////////////*/
+/* //////////////////////////////////////////////////*/
 
-.VisuAddPosto{
+.VisuAddPosto {
   transition: 1s;
-  z-index:3;
+  z-index: 3;
   position: absolute;
   top: 10px;
-  right: 26%;
+  right: 370px;
 }
 
 #telaAdd {
   display: flex;
   width: 92%;
-  height: 100%;
+  height: 98%;
   flex-shrink: 0;
   border-radius: 5.488px;
   background: #e1e5f2;
@@ -382,7 +392,7 @@ p {
   justify-content: center;
 }
 
-.precosDados{
+.precosDados {
   display: flex;
   align-items: center;
 }
@@ -405,11 +415,11 @@ p {
   color: rgb(177, 177, 177);
 }
 
-.inputPrecosAdd::-webkit-inner-spin-button { 
+.inputPrecosAdd::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-.btnAdd{
+.btnAdd {
   transition: 1s;
   width: 200px;
   height: 30px;
@@ -421,23 +431,238 @@ p {
   font-weight: 400;
   border: none;
   cursor: pointer;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
-#btnAdd:hover{
+#btnAdd:hover {
   transition: 1s;
   box-shadow: 0px 0px 5px 1px #02a855;
   background: #008141;
 }
 
-#btnAtuali:hover{
+#btnAtuali:hover {
   transition: 1s;
   box-shadow: 0px 0px 5px 1px #58a3be;
   background: #022b3a;
 }
 
-#btndelete:hover{
+#btndelete:hover {
   transition: 1s;
   box-shadow: 0px 0px 5px 1px #e63318;
   background: #a31600;
+}
+
+/* //////////////////////////////////////////////////*/
+/* //////////////////////////////////////////////////*/
+/* //////////////////////////////////////////////////*/
+
+.main-tela-media {
+  overflow: visible;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tipo-combustivel {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.btn-typw-combustivel {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: rgb(152, 152, 152);
+  margin: 5px;
+  width: 18px;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.btn-typw-combustivel:hover {
+  transition: 1s;
+  width: 100px;
+  color: #8bffac;
+}
+
+
+.elips-maior-media {
+  margin-right: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  height: 280px;
+}
+
+.elips-maior-media::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 10px;
+  background: linear-gradient(to bottom, #1f7a8c, transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.elips-media-media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 220px;
+}
+
+.elips-media-media::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  border-radius: 100%;
+  padding: 10px;
+  background: linear-gradient(to bottom, #bfdbf7, transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.elips-menor-media {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 160px;
+}
+
+.elips-menor-media::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  border-radius: 100%;
+  padding: 7px;
+  background: linear-gradient(to bottom, #93fff8, transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.text-media {
+  color: white;
+  font-family: monospace;
+  font-size: 35px;
+  margin-left: 10px;
+  margin-bottom: 0px;
+}
+
+.menor-maior {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#line-media {
+  width: 100px;
+  margin: 0px;
+}
+
+#text-menor,
+#text-maior {
+  margin: 0px;
+  font-size: 30px;
+}
+
+#text-menor {
+  color: #8bffac;
+}
+
+#text-maior {
+  color: #eb6c6c;
+}
+
+.tabela-precos {
+  width: 290px;
+  height: 180px;
+  border-radius: 10px;
+  background: #2a3447;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulo-tabela {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.text-titulo-tabela {
+  color: rgb(152, 152, 152);
+  width: 25%;
+  text-align: center;
+}
+
+#tabela-nome-posto {
+  width: 50%;
+  text-align: center;
+}
+
+.dados-precos-postos {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
+}
+
+.card-dados {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-preco {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.icon-band-media {
+  width: 30px;
+  height: 30px;
+}
+
+#tabela-line-media {
+  width: 90%;
+  color: rgb(152, 152, 152);
+  margin: 5px;
+}
+
+.tabela-dados-posto {
+  color: white;
+  font-family: monospace;
+}
+
+#tabela-preco-posto {
+  color: #8bffac;
 }

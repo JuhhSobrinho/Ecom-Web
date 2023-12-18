@@ -19,7 +19,6 @@ export function Maps() {
           // Usa a API Clipboard para copiar o texto para a área de transferência
           await navigator.clipboard.writeText(postId);
     
-          console.log("Texto copiado: ", postId);
       } catch (err) {
           console.error("Erro ao copiar texto: ", err);
       }
@@ -55,7 +54,7 @@ export function Maps() {
                 popupAnchor: [0, 0],
             });
 
-            const idKey = "6b,65,72" + doc.id;
+            const idKey = doc.id+"6b6572";
             setPostos((prevPostos) => [...prevPostos, { id: idKey, positions, icon: customIcon, data }]);
         });
     }, []);

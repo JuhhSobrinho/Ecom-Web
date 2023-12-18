@@ -14,7 +14,6 @@ export function PostosCards() {
       // Usa a API Clipboard para copiar o texto para a área de transferência
       await navigator.clipboard.writeText(postId);
 
-      console.log("Texto copiado: ", postId);
   } catch (err) {
       console.error("Erro ao copiar texto: ", err);
   }
@@ -60,13 +59,13 @@ export function PostosCards() {
     };
 
     fetchPostos();
-  }, []);
+  }, [postos]);
 
 
   return (
     <div id="telaPosto">
       {postos.map((posto) => (
-        <div className='posto-main'  key={posto.id}>
+        <div className='posto-main'  key={`postos+${posto.id}`}>
           <div className="postos" onClick={() => copiaCola(posto.id)}>
             <div className="iconPosto">
               <div className='copy'>              
