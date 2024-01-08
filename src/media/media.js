@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../model/model';
-import "../maps/mapa.css";
+import "../style/global.css";
 
 export function MediaPreco() {
     const [postos, setPostos] = useState([]);
@@ -62,7 +62,7 @@ export function MediaPreco() {
 
 
     return (
-        <div id="telaPosto">
+        <div className="telaPosto">
             <main className='main-tela-media'>
             <div className='tipo-combustivel'>
                     <button type="submit" className="btn-typw-combustivel" onClick={() => setTypePreco('precoG')}>Gasolina</button>

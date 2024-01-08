@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../model/model';
-import { } from "../maps/mapa.css";
+import "../style/global.css";
 
 export function PostosCards() {
   const [postos, setPostos] = useState([]);
@@ -63,7 +63,7 @@ export function PostosCards() {
 
 
   return (
-    <div id="telaPosto">
+    <div className="telaPosto">
       {postos.map((posto) => (
         <div className='posto-main'  key={`postos+${posto.id}`}>
           <div className="postos" onClick={() => copiaCola(posto.id)}>

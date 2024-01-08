@@ -2,14 +2,15 @@
 
 import React, { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
-import "./mapa.css";
+import "../style/global.css";
+import { View } from '../view';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { MenuGuias } from "../menu/menu";
 import { querySnapshot } from "../controller/controller";
 
 export function Maps() {
-    const [array, setArray] = useState([-22.9236, -45.4598]);
+    const array = [-22.9236, -45.4598];
     const [postos, setPostos] = useState([]);
     const [statusCopiadoVisible, setStatusCopiadoVisible] = useState(false);
 
@@ -18,7 +19,7 @@ export function Maps() {
         try {
           // Usa a API Clipboard para copiar o texto para a área de transferência
           await navigator.clipboard.writeText(postId);
-    
+          MenuGuias({ status: true });
       } catch (err) {
           console.error("Erro ao copiar texto: ", err);
       }
@@ -38,8 +39,6 @@ export function Maps() {
         }, 3000);
       };
     
-
-
     useEffect(() => {
         querySnapshot.forEach((doc) => {
             const data = doc.data();
@@ -54,27 +53,28 @@ export function Maps() {
                 popupAnchor: [0, 0],
             });
 
-            const idKey = doc.id+"6b6572";
-            setPostos((prevPostos) => [...prevPostos, { id: idKey, positions, icon: customIcon, data }]);
+            const idKey = doc.id;
+            setPostos((prevPostos) => [...prevPostos, { idKey, positions, icon: customIcon, data }]);
         });
     }, []);
 
     return (
         <div className='mapa'>
+                <View />
             <MapContainer center={array} zoom={14} className='MapaConteiner'>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
                 <div id="bands">
-                    {postos.map(({ id, positions, icon, data }) => (
-                        <Marker key={id} position={positions} icon={icon}>
+                    {postos.map(({ idKey, positions, icon, data }) => (
+                        <Marker key={idKey} position={positions} icon={icon}>
                             <Popup className='popupMarker'>
-                                <div className="postos" onClick={() => copiaCola(data.id)}>
+                                <div className="postos" onClick={() => copiaCola(idKey)}>
                                     <div className="iconPosto">
                                         <div className='copy'>
-                                            <img src={'../../img/copy.svg'} onClick={() => copiaCola(data.id)} alt="Id-copiar" className='iconCopy' />
-                                            <p className='diasAtras' style={{ display: statusCopiadoVisible[data.id] ? 'flex' : 'none' }} id='statusCopiado'>ID copied!</p>
+                                            <img src={'../../img/copy.svg'} onClick={() => copiaCola(idKey)} alt="Id-copiar" className='iconCopy' />
+                                            <p className='diasAtras' style={{ display: statusCopiadoVisible[idKey] ? 'flex' : 'none' }} id='statusCopiado'>ID copied!</p>
                                         </div>
                                         <img src={`../../img/${data.bandeira}.png`} alt="iconDoPosto" className='iconBand' />
                                         <div className='backPorcento'>
@@ -109,7 +109,8 @@ export function Maps() {
                 </div>
             </MapContainer>
 
-            {MenuGuias(setArray)}
+
+            <MenuGuias/>
         </div>
     );
 

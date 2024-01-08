@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { collection, addDoc, serverTimestamp, updateDoc, doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../model/model';
-import { } from "../maps/mapa.css";
+import "../style/global.css";
 import { } from "../maps/mapa.js";
 import { getLatLngFromAddress } from "../model/apiLatlon.js";
 import { ToastContainer, toast } from 'react-toastify';
@@ -252,7 +252,7 @@ export function AddPosto(setCordenadas) {
 
 
     return (
-        <div id="telaPosto">
+        <div className="telaPosto">
             <div className='VisuAddPosto'>
                 <ToastContainer />
                 <div className='posto-main'>

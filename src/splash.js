@@ -8,7 +8,7 @@ const SplashScreen = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000); // Tempo em milissegundos para exibir a tela de splash
+    }, 2000); // Tempo em milissegundos para exibir a tela de splash
 
     return () => clearTimeout(timer);
   }, []);
@@ -22,8 +22,14 @@ const SplashScreen = () => {
         <div className='linhas4'></div>
 
         <section className='icon'>
-          <img src={logo} className="img-responsive" alt="Logo da empresa"></img>
-          <h1 className='titulo'>ecom</h1>
+        <lord-icon
+            src="https://cdn.lordicon.com/tdtlrbly.json"
+            trigger="loop"
+            delay="500"
+            state="in-jump-dynamic"
+            colors="primary:#1f7a8c,secondary:#bfdbf7"
+            style={{width:'250px', height:'250px'}}>
+          </lord-icon>          <h1 className='titulo'>ecom</h1>
         </section>
 
       </div>

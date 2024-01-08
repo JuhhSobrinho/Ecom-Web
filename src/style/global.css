@@ -2,6 +2,11 @@
   width: 100%;
 }
 
+a{
+  text-decoration: none;
+  color: #bfdbf7;
+}
+
 .mapa {
   display: flex;
   background-color: #022b3a;
@@ -36,7 +41,8 @@
   width: 370px;
 }
 
-#telaPosto {
+.telaPosto {
+  position: relative;
   display: flex;
   align-items: center;
   overflow: auto;
@@ -489,7 +495,6 @@ p {
   color: #8bffac;
 }
 
-
 .elips-maior-media {
   margin-right: 10px;
   position: relative;
@@ -665,4 +670,98 @@ p {
 
 #tabela-preco-posto {
   color: #8bffac;
+}
+
+/* //////////////////////////////////////////////////*/
+/* //////////////////////////////////////////////////*/
+/* //////////////////////////////////////////////////*/
+
+.fundo-user{
+  position: absolute;
+  z-index: 0;
+  background-image: url("../../public/img/fundo-perfil.png");
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size:auto;
+  background-position: center;
+  filter: blur(5px);
+}
+
+.main-userConfig {
+  z-index: 1;
+  height: 90vh;
+  width: 100%;
+}
+
+.perfil-sair{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.sair{
+  display: flex;
+  justify-content: space-between;
+}
+
+.txt-sair{
+  color: #ff2200;
+  font: 18px;
+}
+
+.perfil{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img-user {
+  border-style: solid;
+  border-radius: 100%;
+  border-color: #e1e5f2;
+  padding: 10px;
+  border-width: 1px;  
+  transition: 0.5s;
+}
+
+.img-user:hover {
+  transition: 1s;
+  border-color: #8bffac;
+}
+
+.email-user{
+  color: #f7fdff;
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.line-user{
+  width: 90%;
+  height: 1px;
+  background-color: #93fff8;
+}
+
+.sobre-salvos-contato{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btn-user{
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sobre-descricao{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
 }

@@ -112,7 +112,7 @@
 }
 
 .descricao {
-  color: rgb(245, 241, 241);
+  color: #bfdbf7;
   width: 300px;
   font-size: 23px;
   background-color: transparent;
@@ -127,7 +127,7 @@
 }
 
 ::-webkit-input-placeholder {
-  color: #bfdbf7;
+  color: #ffffff78;
 }
 
 .descricao:focus {
@@ -135,7 +135,7 @@
   outline: 0;
 }
 
-.dados-botao{
+.dados-botao {
   width: 593px;
 }
 
@@ -153,7 +153,7 @@
   cursor: pointer;
 }
 
-.login-sing-up{
+.login-sing-up {
   box-shadow: 0px 0px 50px 15px rgba(0, 0, 0, 0.6);
   border-radius: 16.76px;
   margin-right: 30px;
@@ -185,10 +185,16 @@
   cursor: pointer;
 }
 
-#singUpBotaoColor{
+#singUpBotaoColor {
   background-color: #022b3a;
 }
 
-#loginBotaoColor{
+#loginBotaoColor {
   background-color: #1f7a8c;
+}
+
+.button-olhos {
+  background-color: transparent;
+  border: none;
+  margin: 0px;
 }

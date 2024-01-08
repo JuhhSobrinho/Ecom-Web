@@ -1,31 +1,35 @@
 import React, { useState } from 'react';
 import 'leaflet/dist/leaflet.css';
-import "../maps/mapa.css";
+import "../style/global.css";
 import { PostosCards } from "../postos/postos";
 import { AddPosto } from "../add/add";
 import { SalvosPostos } from "../salvos/salvos";
 import { UserConfig } from "../user/user";
 import { MediaPreco } from "../media/media";
+import { Sobre } from '../user/sobre';
 
 
-export function MenuGuias() {
+export function MenuGuias({ guiaSobre = false }) {
 
     const [getGuias, setGuias] = useState('PostosCards');
 
     const botaoGuias = (guiaId) => {
         setGuias(guiaId);
-        console.log(getGuias);
     }
 
 
     const guiasComponents = {
-        'Media': <MediaPreco/>,
-        'PostosCards': <PostosCards/>,
-        'AddPosto': <AddPosto/>,
-        'SalvosPostos': <SalvosPostos/>,
-        'UserConfig': <UserConfig/>,
+        'Media': <MediaPreco />,
+        'PostosCards': <PostosCards />,
+        'AddPosto': <AddPosto />,
+        'SalvosPostos': <SalvosPostos />,
+        'UserConfig': <UserConfig />,
+        'Sobre': <Sobre />,
     };
 
+    if (guiaSobre) {
+        botaoGuias('Sobre');
+    }
 
     return (
         <div id="tipoDeTelas">
