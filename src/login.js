@@ -9,9 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 const login = async (email, password, navigate) => {
   const auth = getAuth();
   signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
+    .then(() => {
 
       navigate('/maps/mapa');
       // ...
@@ -74,10 +72,10 @@ function LoginEntra() {
           <section className='login'>
             <div className='login-sing-up'>
               <Link to="/login">
-                <input className='entrada-login' type='submit' value='Login' id="loginBotaoColor"></input>
+                <input className='entrada-login' type='submit' value='Login' id="status-ativado"></input>
               </Link>
               <Link to="/signUp">
-                <input className='entrada-sing-up' type='submit' value='Sing Up' id="singUpBotaoColor"></input>
+                <input className='entrada-sing-up' type='submit' value='Sing Up' id="status-desativado"></input>
               </Link>
             </div>
             <section className='formulario'>

@@ -28,7 +28,8 @@ export function MenuGuias({ guiaSobre = false }) {
     };
 
     if (guiaSobre) {
-        botaoGuias('Sobre');
+        console.log("Pooooooosssstooooo");
+        botaoGuias('SalvosPostos');
     }
 
     return (

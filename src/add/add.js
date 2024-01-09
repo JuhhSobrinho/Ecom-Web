@@ -12,7 +12,7 @@ const timestamp = serverTimestamp();
 
 const addPostos = async (nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude) => {
     try {
-        const docRef = await addDoc(collection(db, "postos"), {
+        await addDoc(collection(db, "postos"), {
             id: "4",
             nome: nomePosto,
             endereco: enderecoPosto,
@@ -93,7 +93,7 @@ const deletePosto = async (pesquisaid, nomePosto) => {
     }
 }
 
-export function AddPosto(setCordenadas) {
+export function AddPosto() {
     const [pesquisaid, setPesquisa] = useState([])
     const [bandeirasSelecionadas, setBandeirasSelecionadas] = useState(['Sem Bandeira']);
 

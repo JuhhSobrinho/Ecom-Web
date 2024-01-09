@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../model/model';
+import { firePosto } from '../controller/controller';
 import "../style/global.css";
 
 export function PostosCards() {
@@ -33,39 +32,22 @@ export function PostosCards() {
     }, 3000);
   };
 
+  const postosData = firePosto;
+
   useEffect(() => {
     const fetchPostos = async () => {
-      const querySnapshot = await getDocs(collection(db, 'postos'));
-      const postosData = [];
-
-      querySnapshot.forEach((doc) => {
-        const dataFor = doc.data();
-        postosData.push({
-          id: doc.id,
-          nome: dataFor.nome,
-          endereco: dataFor.endereco,
-          bandeira: dataFor.bandeira,
-          precoD: dataFor.preco.diesel,
-          precoE: dataFor.preco.etanol,
-          precoG: dataFor.preco.gaso,
-          date: dataFor.date.toDate(),
-          localLa: dataFor.localizacao.latitude,
-          localLo: dataFor.localizacao.longitude,
-          avaliacao: dataFor.avaliacao,
-        });
-      });
 
       setPostos(postosData);
     };
 
     fetchPostos();
-  }, [postos]);
+  }, [postosData]);
 
 
   return (
     <div className="telaPosto">
       {postos.map((posto) => (
-        <div className='posto-main'  key={`postos+${posto.id}`}>
+        <div className='posto-main'  key={`salvo+${posto.id}`}>
           <div className="postos" onClick={() => copiaCola(posto.id)}>
             <div className="iconPosto">
               <div className='copy'>              
@@ -96,7 +78,7 @@ export function PostosCards() {
               <p className="precos">{posto.precoD} Disel</p>
               <p className="precos">{posto.precoE} Etana</p>
               <p className="precos">{posto.precoG} Gasol</p>
-              <p className="diasAtras">{posto.date.toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}</p>
+              <p className="diasAtras">{posto.date.toDate().toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}</p>
             </div>
           </div>
           <div className='linha'></div>

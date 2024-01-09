@@ -13,6 +13,7 @@ export function View({ estado = true }) {
       if (user) {
         const email = user.email;
         setUserEmail(email);
+        setTimeout(() => {
         toast.info(`Bem Vindo: ${email}`, {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
@@ -22,7 +23,7 @@ export function View({ estado = true }) {
             backgroundColor: '#1f7a8c',
             color: '#BFDBF7',
           },
-        });
+        });  }, 1500);
       } else {
         toast.info(`Usuario não autentificado`, {
           position: toast.POSITION.TOP_CENTER,
@@ -47,7 +48,6 @@ export function View({ estado = true }) {
 
     return () => unsubscribe();
   }, [navigate]);
-
 
   // Renderização condicional com base no estado
   return (

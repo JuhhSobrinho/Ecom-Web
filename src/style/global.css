@@ -8,6 +8,7 @@ a{
 }
 
 .mapa {
+  z-index: 0;
   display: flex;
   background-color: #022b3a;
   width: 100%;
@@ -57,7 +58,7 @@ a{
 
 /* Estiliza a barra de rolagem */
 ::-webkit-scrollbar {
-  width: 8px; /* Largura da barra de rolagem */
+  width: 2px; /* Largura da barra de rolagem */
 }
 /* Estiliza o controle */
 ::-webkit-scrollbar-thumb {
@@ -763,5 +764,22 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   padding: 20px;
+}
+
+#main-contao{
+  display: flex;
+  width: 92%;
+  height: 98%;
+  flex-shrink: 0;
+  border-radius: 5.488px;
+  background: #022b3aa0;
+  flex-direction: column;
+  align-items: center;
+  margin: 2px;
+}
+
+#mensagem-contato{
+  height: 100px;
 }

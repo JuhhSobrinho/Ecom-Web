@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from './model/model';
 import logo from './logo.svg';
 import './App.css';
 import SplashScreen from './splash';
@@ -6,12 +8,23 @@ import { Link, useNavigate } from 'react-router-dom';  ///npm install react-rout
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
 
+
+const userSalvos = async (minhaColecao, dados, nomeDoDocumento) => { 
+  await addDoc(minhaColecao, dados, nomeDoDocumento);
+}
+
 const singUp = async (email, password, navigate) => {
   const auth = getAuth();
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed up 
       const user = userCredential.user;
+
+      const minhaColecao = collection(db, 'users');
+      const nomeDoDocumento = user;
+      const dados = {};
+
+      userSalvos(minhaColecao, dados, nomeDoDocumento)
       // ...
       navigate('../login');
     })
@@ -40,7 +53,7 @@ function SignUpCadastro() {
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
   const navigate = useNavigate();
-  
+
   const handleClick = () => {
     singUp(email, senha, navigate)
   };
@@ -75,10 +88,10 @@ function SignUpCadastro() {
           <section className='login'>
             <div className='login-sing-up'>
               <Link to="/login">
-                <input className='entrada-login' type='submit' value='Login'></input>
+                <input className='entrada-login' type='submit' value='Login' id="status-desativado"></input>
               </Link>
               <Link to="/signUp">
-                <input className='entrada-sing-up' type='submit' value='Sing Up'></input>
+                <input className='entrada-sing-up' type='submit' value='Sing Up' id="status-ativado"></input>
               </Link>
             </div>
             <section className='formulario'>

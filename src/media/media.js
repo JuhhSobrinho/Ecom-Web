@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../model/model';
+import {firePosto} from '../controller/controller';
 import "../style/global.css";
 
 export function MediaPreco() {
@@ -11,33 +10,16 @@ export function MediaPreco() {
     const [menorPreco, setMenorPreco] = useState(0);
 
     const [typePreco, setTypePreco] = useState('precoG');
+    const postosData = firePosto;
+    
     useEffect(() => {
         const fetchPostos = async () => {
-            const querySnapshot = await getDocs(collection(db, 'postos'));
-            const postosData = [];
-
-            querySnapshot.forEach((doc) => {
-                const dataFor = doc.data();
-                postosData.push({
-                    id: doc.id,
-                    nome: dataFor.nome,
-                    bandeira: dataFor.bandeira,
-                    precoD: dataFor.preco.diesel,
-                    precoE: dataFor.preco.etanol,
-                    precoG: dataFor.preco.gaso,
-                });
-            });
-
             setPostos(postosData);
-            postos.sort((a, b) => a[typePreco] - b[typePreco]);
-            
-
+            postosData.sort((a, b) => a[typePreco] - b[typePreco]);
         };
-
+    
         fetchPostos();
-    }, [postos, typePreco]);
-
-
+    }, [postosData, typePreco]);
 
 
     useEffect(() => {

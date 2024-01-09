@@ -3,11 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
 import "../style/global.css";
+import SplashScreen from '../splash';
 import { View } from '../view';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { MenuGuias } from "../menu/menu";
-import { querySnapshot } from "../controller/controller";
+import { firePosto } from "../controller/controller";
 
 export function Maps() {
     const array = [-22.9236, -45.4598];
@@ -19,7 +20,6 @@ export function Maps() {
         try {
           // Usa a API Clipboard para copiar o texto para a área de transferência
           await navigator.clipboard.writeText(postId);
-          MenuGuias({ status: true });
       } catch (err) {
           console.error("Erro ao copiar texto: ", err);
       }
@@ -38,14 +38,12 @@ export function Maps() {
           }));
         }, 3000);
       };
-    
-    useEffect(() => {
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            const positions = [data.localizacao.latitude, data.localizacao.longitude];
 
+
+      useEffect(() => {
+        firePosto.forEach((data) => {
+            const positions = [data.lat, data.lon];
             const iconUrl = `../../img/${data.bandeira}.png`;
-
             const customIcon = L.icon({
                 iconUrl,
                 iconSize: [35, 35],
@@ -53,13 +51,14 @@ export function Maps() {
                 popupAnchor: [0, 0],
             });
 
-            const idKey = doc.id;
+            const idKey = data.id;  // Se preferir usar o id do objeto
             setPostos((prevPostos) => [...prevPostos, { idKey, positions, icon: customIcon, data }]);
         });
     }, []);
 
     return (
         <div className='mapa'>
+            <SplashScreen/>
                 <View />
             <MapContainer center={array} zoom={14} className='MapaConteiner'>
                 <TileLayer
@@ -68,7 +67,7 @@ export function Maps() {
                 />
                 <div id="bands">
                     {postos.map(({ idKey, positions, icon, data }) => (
-                        <Marker key={idKey} position={positions} icon={icon}>
+                        <Marker key={"maps"+idKey} position={positions} icon={icon}>
                             <Popup className='popupMarker'>
                                 <div className="postos" onClick={() => copiaCola(idKey)}>
                                     <div className="iconPosto">
@@ -97,9 +96,9 @@ export function Maps() {
                                     </div>
                                     <div className="precoPosto">
                                         <span className="precos"></span>
-                                        <p className="precos">{data.preco.diesel} Disel</p>
-                                        <p className="precos">{data.preco.etanol} Etana</p>
-                                        <p className="precos">{data.preco.gaso} Gasol</p>
+                                        <p className="precos">{data.precoD} Disel</p>
+                                        <p className="precos">{data.precoE} Etana</p>
+                                        <p className="precos">{data.precoG} Gasol</p>
                                         <p className="diasAtras">{data.date.toDate().toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}</p>
                                     </div>
                                 </div>

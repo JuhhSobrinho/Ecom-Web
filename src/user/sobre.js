@@ -1,6 +1,7 @@
 import React from 'react';
 import 'leaflet/dist/leaflet.css';
 import "../style/global.css";
+import logo from '../logo.svg';
 
 export function Sobre() {
     return (
@@ -9,7 +10,7 @@ export function Sobre() {
             <main className='main-userConfig'>
                 <section className='perfil-sair'>
                     <section className='perfil'>
-                        <img src="/logo.svg" className="img-responsive" alt="image-logo" style={{ width: '120px', height: '120px' }} />
+                        <img src={logo} alt="empresa-logo" className="img-responsive" style={{ width: '120px', height: '120px' }} />
                         <h1 className='email-user'>ECOM</h1>
                         <div className='line-user'></div>
                     </section>
