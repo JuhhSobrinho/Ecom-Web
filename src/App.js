@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import SplashScreen from './splash';
 import SignUpCadastro from './signUp';
-import LoginEntra from './login';
+import LoginEntra from './login.js';
 import { Maps } from './maps/mapa.js';
 
 function App() {
