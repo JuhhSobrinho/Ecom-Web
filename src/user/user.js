@@ -3,9 +3,12 @@ import 'leaflet/dist/leaflet.css';
 import "../style/global.css";
 import { View } from '../view';
 import { getAuth, signOut, deleteUser } from 'firebase/auth';
+import {doc, deleteDoc } from 'firebase/firestore';
+
+import { db } from '../model/model';
 import { Sobre } from './sobre';
 import { Contato } from './contato';
-
+import { ToastContainer, toast } from 'react-toastify';
 
 export const sair = async (auth) => {
     signOut(auth)
@@ -17,33 +20,60 @@ export const sair = async (auth) => {
         });
 }
 
-export const deleteAtualUser = async (auth) => {
+let aux = 0;
+export const deleteAtualUser = async (auth, uidUser, email) => {
+    const docRefDelet = doc(db, 'users', uidUser);
     const user = auth.currentUser;
-    if (user) {
-        signOut(auth)
-            .then(() => {
-                console.log('Usuário desconectado com sucesso');
+    aux += 1;
+    try {
+        if (aux === 2) {
+            await deleteDoc(docRefDelet);
+            signOut(auth)
+                .then(() => {
+                    console.log('Usuário desconectado com sucesso');
 
-                deleteUser(user)
-                    .then(() => {
-                        console.log('Usuário excluído com sucesso');
-                    })
-                    .catch((error) => {
-                        console.error('Erro ao excluir o usuário', error);
-                    });
-            })
-            .catch((error) => {
-                console.error('Erro ao desconectar o usuário', error);
+                    deleteUser(user)
+                        .then(() => {
+                            console.log('Usuário excluído com sucesso');
+                        })
+                        .catch((error) => {
+                            console.error('Erro ao excluir o usuário', error);
+                        });
+                })
+                .catch((error) => {
+                    console.error('Erro ao desconectar o usuário', error);
+                });
+        } else {
+            toast.info(`\n  ${email} Precione 👇 mais uma vez o botão "DELETAR" para confirmar a exclusão da conta`, {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 7000,
+                closeButton: false,
+                tema: "red",
+                style: {
+                    backgroundColor: '#022b3a',
+                    color: 'white',
+                },
+                progressBarStyle: {
+                    backgroundColor: 'green', // Cor da barra de tempo
+                },
             });
-    } else {
-        console.log('Nenhum usuário autenticado');
+        }
+    } catch (error) {
+        console.error('Erro ao excluir usuario:', error);
     }
 };
+
+
+
 
 
 export function UserConfig() {
     const [getEmaSobUse, setEmaSobUse] = useState(0);
     const auth = getAuth();
+    let email = <View estado={1} />;
+
+    const emailUser = View({ estado: 1 });
+    const uidUser = View({ estado: 2 });
     const handleCallSobre = () => {
         setEmaSobUse(1);
     }
@@ -58,10 +88,9 @@ export function UserConfig() {
     }
 
     const handleCallDeleteUser = () => {
-        deleteAtualUser(auth)
+        deleteAtualUser(auth,uidUser, emailUser)
     }
 
-    let email = <View estado={false} />;
 
     let conteudo;
     switch (getEmaSobUse) {
@@ -80,6 +109,7 @@ export function UserConfig() {
 
     return (
         <div className="telaPosto">
+            <ToastContainer/>
             <div className='fundo-user'></div>
             {getEmaSobUse ? conteudo :
                 <main className='main-userConfig'>

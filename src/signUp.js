@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { collection, addDoc } from 'firebase/firestore';
+import { setDoc, doc } from 'firebase/firestore';
 import { db } from './model/model';
 import logo from './logo.svg';
 import './App.css';
@@ -9,8 +9,8 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
 
 
-const userSalvos = async (minhaColecao, dados, nomeDoDocumento) => { 
-  await addDoc(minhaColecao, dados, nomeDoDocumento);
+const userSalvos = async (nomeDoDocumento) => { 
+  await setDoc(doc(db, "users", nomeDoDocumento), {});
 }
 
 const singUp = async (email, password, navigate) => {
@@ -19,13 +19,10 @@ const singUp = async (email, password, navigate) => {
     .then((userCredential) => {
       // Signed up 
       const user = userCredential.user;
+      const nomeDoDocumento = user.uid;
 
-      const minhaColecao = collection(db, 'users');
-      const nomeDoDocumento = user;
-      const dados = {};
+      userSalvos(nomeDoDocumento)
 
-      userSalvos(minhaColecao, dados, nomeDoDocumento)
-      // ...
       navigate('../login');
     })
     .catch((error) => {

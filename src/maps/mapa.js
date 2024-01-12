@@ -9,38 +9,42 @@ import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { MenuGuias } from "../menu/menu";
 import { firePosto } from "../controller/controller";
+import { ToastContainer, toast } from 'react-toastify';
 
 export function Maps() {
     const array = [-22.9236, -45.4598];
     const [postos, setPostos] = useState([]);
     const [statusCopiadoVisible, setStatusCopiadoVisible] = useState(false);
+    const [setaGuia, setSetaGuia] = useState(true);
+
+    const viewResult = View({ estado: 1 });
 
     const copiaCola = async (postId) => {
         // Lógica para copiar o texto...
         try {
-          // Usa a API Clipboard para copiar o texto para a área de transferência
-          await navigator.clipboard.writeText(postId);
-      } catch (err) {
-          console.error("Erro ao copiar texto: ", err);
-      }
-    
+            // Usa a API Clipboard para copiar o texto para a área de transferência
+            await navigator.clipboard.writeText(postId);
+        } catch (err) {
+            console.error("Erro ao copiar texto: ", err);
+        }
+
         // Atualiza o estado apenas para o card clicado
         setStatusCopiadoVisible((prevStatus) => ({
-          ...prevStatus,
-          [postId]: true,
+            ...prevStatus,
+            [postId]: true,
         }));
-    
+
         // Esconde o status após algum tempo (por exemplo, 3 segundos)
         setTimeout(() => {
-          setStatusCopiadoVisible((prevStatus) => ({
-            ...prevStatus,
-            [postId]: false,
-          }));
+            setStatusCopiadoVisible((prevStatus) => ({
+                ...prevStatus,
+                [postId]: false,
+            }));
         }, 3000);
-      };
+    };
 
 
-      useEffect(() => {
+    useEffect(() => {
         firePosto.forEach((data) => {
             const positions = [data.lat, data.lon];
             const iconUrl = `../../img/${data.bandeira}.png`;
@@ -56,60 +60,112 @@ export function Maps() {
         });
     }, []);
 
+    useEffect(() => {
+        if (viewResult !== '') {
+            setTimeout(() => {
+                toast.info(`Bem Vindo: ${viewResult}`, {
+                    position: toast.POSITION.TOP_LEFT,
+                    autoClose: 2000,
+                    closeButton: false,
+                    tema: "red",
+                    style: {
+                        backgroundColor: '#1f7a8c',
+                        color: '#BFDBF7',
+                    },
+                });
+            }, 1500);
+        }
+    }, [viewResult])
+
+
+    const handleSetaGuia = () => {
+        setSetaGuia(!setaGuia);
+    }
+    console.log(setaGuia);
+
+
     return (
         <div className='mapa'>
-            <SplashScreen/>
-                <View />
-            <MapContainer center={array} zoom={14} className='MapaConteiner'>
-                <TileLayer
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                />
-                <div id="bands">
-                    {postos.map(({ idKey, positions, icon, data }) => (
-                        <Marker key={"maps"+idKey} position={positions} icon={icon}>
-                            <Popup className='popupMarker'>
-                                <div className="postos" onClick={() => copiaCola(idKey)}>
-                                    <div className="iconPosto">
-                                        <div className='copy'>
-                                            <img src={'../../img/copy.svg'} onClick={() => copiaCola(idKey)} alt="Id-copiar" className='iconCopy' />
-                                            <p className='diasAtras' style={{ display: statusCopiadoVisible[idKey] ? 'flex' : 'none' }} id='statusCopiado'>ID copied!</p>
-                                        </div>
-                                        <img src={`../../img/${data.bandeira}.png`} alt="iconDoPosto" className='iconBand' />
-                                        <div className='backPorcento'>
-                                            <div className='star' style={{ width: `${100 - (((data.avaliacao) * 2) * 10)}%` }}>
+            <SplashScreen />
+            <View />
+            <ToastContainer />
+            <div style={{ width: '100%' }} >
+                <MapContainer center={array} zoom={14} className='MapaConteiner'>
+                    <TileLayer
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    />
+                    <div id="bands">
+                        {postos.map(({ idKey, positions, icon, data }) => (
+                            <Marker key={"maps" + idKey} position={positions} icon={icon}>
+                                <Popup className='popupMarker'>
+                                    <div className="postos" onClick={() => copiaCola(idKey)}>
+                                        <div className="iconPosto">
+                                            <div className='copy'>
+                                                <img src={'../../img/copy.svg'} onClick={() => copiaCola(idKey)} alt="Id-copiar" className='iconCopy' />
+                                                <p className='diasAtras' style={{ display: statusCopiadoVisible[idKey] ? 'flex' : 'none' }} id='statusCopiado'>ID copied!</p>
+                                            </div>
+                                            <img src={`../../img/${data.bandeira}.png`} alt="iconDoPosto" className='iconBand' />
+                                            <div className='backPorcento'>
+                                                <div className='star' style={{ width: `${100 - (((data.avaliacao) * 2) * 10)}%` }}>
+
+                                                </div>
+                                                <div className='Porcento'></div>
+                                                <div className='Porcento'></div>
+                                                <div className='Porcento'></div>
+                                                <div className='Porcento'></div>
+                                                <div className='Porcento'></div>
+
 
                                             </div>
-                                            <div className='Porcento'></div>
-                                            <div className='Porcento'></div>
-                                            <div className='Porcento'></div>
-                                            <div className='Porcento'></div>
-                                            <div className='Porcento'></div>
-
 
                                         </div>
-
+                                        <div className="descricaoPosto">
+                                            <span className="nomeDoPosto">{data.nome}</span>
+                                            <p className="descricaoText">{data.endereco}</p>
+                                        </div>
+                                        <div className="precoPosto">
+                                            <span className="precos"></span>
+                                            <p className="precos">{data.precoD} Disel</p>
+                                            <p className="precos">{data.precoE} Etana</p>
+                                            <p className="precos">{data.precoG} Gasol</p>
+                                            <p className="diasAtras">{data.date.toDate().toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}</p>
+                                        </div>
                                     </div>
-                                    <div className="descricaoPosto">
-                                        <span className="nomeDoPosto">{data.nome}</span>
-                                        <p className="descricaoText">{data.endereco}</p>
-                                    </div>
-                                    <div className="precoPosto">
-                                        <span className="precos"></span>
-                                        <p className="precos">{data.precoD} Disel</p>
-                                        <p className="precos">{data.precoE} Etana</p>
-                                        <p className="precos">{data.precoG} Gasol</p>
-                                        <p className="diasAtras">{data.date.toDate().toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}</p>
-                                    </div>
-                                </div>
-                            </Popup>
-                        </Marker>
-                    ))}
-                </div>
-            </MapContainer>
+                                </Popup>
+                            </Marker>
+                        ))}
+                    </div>
+                </MapContainer>
+            </div>
+
+            <button className='btn-seta-guia' onClick={handleSetaGuia} style={{ right: setaGuia ? ' 28%' : "25px", transition: '1s' }}>
+                {setaGuia
+                    ? (
+                        <lord-icon
+                            src="https://cdn.lordicon.com/vduvxizq.json"
+                            trigger="click"
+                            colors="primary:#1f7a8c"
+                            state="hover-ternd-flat-3"
+                            style={{ width: '60px', height: '60px' }}
+                        >
+                        </lord-icon>
+                    )
+                    : (
+                        <lord-icon
+                            src="https://cdn.lordicon.com/vduvxizq.json"
+                            trigger="click"
+                            colors="primary:#1f7a8c"
+                            state="hover-ternd-flat-3"
+                            style={{ width: '60px', height: '60px', transform: 'rotate(180deg)' }}
+                        >
+                        </lord-icon>
+                    )
+                }
+            </button>
 
 
-            <MenuGuias/>
+            <MenuGuias estado={setaGuia} />
         </div>
     );
 

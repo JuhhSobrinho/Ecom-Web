@@ -9,7 +9,7 @@ import { MediaPreco } from "../media/media";
 import { Sobre } from '../user/sobre';
 
 
-export function MenuGuias({ guiaSobre = false }) {
+export function MenuGuias({ estado = true }) {
 
     const [getGuias, setGuias] = useState('PostosCards');
 
@@ -27,13 +27,9 @@ export function MenuGuias({ guiaSobre = false }) {
         'Sobre': <Sobre />,
     };
 
-    if (guiaSobre) {
-        console.log("Pooooooosssstooooo");
-        botaoGuias('SalvosPostos');
-    }
 
     return (
-        <div id="tipoDeTelas">
+        <div id="tipoDeTelas" style={{ width: estado ? ' 370px' : "0px", transition: '1s'}}>
 
 
 
@@ -41,7 +37,7 @@ export function MenuGuias({ guiaSobre = false }) {
 
 
 
-            <div id="menu">
+            <div id="menu" style={{ display: estado ? ' flex' : "none"}}>
                 <div onClick={() => botaoGuias('Media')}>
                     <img src="../../img/media.svg" alt="menuMapa" className="imgs" />
                 </div>

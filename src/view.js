@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
-export function View({ estado = true }) {
+export function View({ estado = 0 }) {
   const [userEmail, setUserEmail] = useState('');
+  const [userUid, setSerUid] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -12,20 +13,12 @@ export function View({ estado = true }) {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const email = user.email;
+        const userid = user.uid;
+
         setUserEmail(email);
-        setTimeout(() => {
-        toast.info(`Bem Vindo: ${email}`, {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 2000,
-          closeButton: false,
-          tema: "red",
-          style: {
-            backgroundColor: '#1f7a8c',
-            color: '#BFDBF7',
-          },
-        });  }, 1500);
+        setSerUid(userid);
       } else {
-        toast.info(`Usuario não autentificado`, {
+        toast.info(`Usuario não autenticado`, {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1000,
           closeButton: false,
@@ -45,14 +38,21 @@ export function View({ estado = true }) {
         }, 2000);
       }
     });
-
     return () => unsubscribe();
   }, [navigate]);
 
-  // Renderização condicional com base no estado
-  return (
-    <div>
-      {estado ? <ToastContainer /> : userEmail}
-    </div>
-  );
+
+  let conteudo;
+  switch (estado) {
+    case 1:
+      conteudo = userEmail;
+      break;
+    case 2:
+      conteudo = userUid;
+      break;
+    default:
+      break;
+  }
+  // Retornar diretamente o valor de conteudo
+  return conteudo;
 }

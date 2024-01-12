@@ -255,7 +255,7 @@ export function AddPosto() {
         <div className="telaPosto">
             <div className='VisuAddPosto'>
                 <ToastContainer />
-                <div className='posto-main'>
+                <div className='posto-main-card'>
                     <div className="postos">
                         <div className="iconPosto">
                             <img src={`../../img/${bandeirasSelecionadas}.png`} alt="iconDoPosto" className='iconBand' />
