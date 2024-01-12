@@ -7,10 +7,10 @@ import { Maps } from './maps/mapa.js';
 
 function App() {
   console.log("Tela App");
-  
-  // Adicionando o redirecionamento para a tela de login
+
+
   return (
-    <Router>
+    <Router basename="/Ecom-Web">
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/splash" element={<SplashScreen />} />
@@ -23,3 +23,5 @@ function App() {
 }
 
 export default App;
+
+
