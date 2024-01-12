@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SplashScreen from './splash';
-import SignUpCadastro from './signUp';
-import LoginEntra from './login';
+import SplashScreen from './splash.js';
+import SignUpCadastro from './signUp.js';
+import LoginEntra from './login.js';
 import {Maps} from './maps/mapa.js';
 
 
