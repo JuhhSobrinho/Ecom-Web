@@ -10,6 +10,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<LoginEntra />} />
         <Route element={<LoginEntra />} index />
         <Route element={<LoginEntra />} path="/login" /> {/* Página inicial */}
         <Route path="/splash" element={<SplashScreen />} />
