@@ -6,6 +6,7 @@ import LoginEntra from './login.js';
 import { Maps } from './maps/mapa.js';
 
 function App() {
+  console.log("Testando esssa poha");
   return (
     <Router>
       <Routes>

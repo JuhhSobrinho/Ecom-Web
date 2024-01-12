@@ -52,6 +52,8 @@ function LoginEntra() {
   const toggleMostrarSenha = () => {
     setMostrarSenha(!mostrarSenha);
   };
+
+  console.log("salve salve fml");
   return (
     <div className="App">
       <SplashScreen />
