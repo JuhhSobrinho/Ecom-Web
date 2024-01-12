@@ -10,12 +10,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginEntra />} />
+        <Route path="./login.js" element={<LoginEntra />} />
         <Route element={<LoginEntra />} index />
-        <Route element={<LoginEntra />} path="/login" /> {/* Página inicial */}
+        <Route element={<LoginEntra />} path="./login.js" /> {/* Página inicial */}
         <Route path="/splash" element={<SplashScreen />} />
         <Route path="/signUp" element={<SignUpCadastro />} />
-        <Route path="/login" element={<LoginEntra />} /> {/* Página de login */}
+        <Route path="./login.js" element={<LoginEntra />} /> {/* Página de login */}
         <Route path="/maps/mapa" element={<Maps />} />
       </Routes>
     </Router>
