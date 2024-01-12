@@ -1,17 +1,26 @@
 {
   "files": {
     "main.css": "/Ecom-Web/static/css/main.3d9b428a.css",
-    "main.js": "/Ecom-Web/static/js/main.a51c0a54.js",
+    "main.js": "/Ecom-Web/static/js/main.e736b06e.js",
     "static/js/787.b4b0043a.chunk.js": "/Ecom-Web/static/js/787.b4b0043a.chunk.js",
     "static/media/fundo-perfil.png": "/Ecom-Web/static/media/fundo-perfil.1147f23a3e0a792be969.png",
+    "static/media/Petrobras.png": "/Ecom-Web/static/media/Petrobras.a98e4a61781cfac9360d.png",
+    "static/media/Ipiranga.png": "/Ecom-Web/static/media/Ipiranga.03dc24eb015973b98607.png",
+    "static/media/Sem Bandeira.png": "/Ecom-Web/static/media/Sem Bandeira.eead72000b030e0a4c1b.png",
+    "static/media/config.svg": "/Ecom-Web/static/media/config.41cca5314912ae96b61d2e686818b888.svg",
     "static/media/logo.svg": "/Ecom-Web/static/media/logo.f39626cc0036836d7cc0db0e5db6949e.svg",
+    "static/media/posto.svg": "/Ecom-Web/static/media/posto.a9ef307e1722c96ce7e8297ffd7a3d0d.svg",
+    "static/media/copy.svg": "/Ecom-Web/static/media/copy.3d3d5b9f6dd3d74f4b0a5d75c77d6990.svg",
     "index.html": "/Ecom-Web/index.html",
+    "static/media/media.svg": "/Ecom-Web/static/media/media.fad23a5f1cf8aca5e742287cd9544636.svg",
+    "static/media/add.svg": "/Ecom-Web/static/media/add.968699a99ec5f274a4bb371518dbd0fc.svg",
+    "static/media/salvo.svg": "/Ecom-Web/static/media/salvo.1a02671788d9210c05634b14c7ffd980.svg",
     "main.3d9b428a.css.map": "/Ecom-Web/static/css/main.3d9b428a.css.map",
-    "main.a51c0a54.js.map": "/Ecom-Web/static/js/main.a51c0a54.js.map",
+    "main.e736b06e.js.map": "/Ecom-Web/static/js/main.e736b06e.js.map",
     "787.b4b0043a.chunk.js.map": "/Ecom-Web/static/js/787.b4b0043a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3d9b428a.css",
-    "static/js/main.a51c0a54.js"
+    "static/js/main.e736b06e.js"
   ]
 }
