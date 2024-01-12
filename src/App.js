@@ -6,11 +6,11 @@ import LoginEntra from './login.js';
 import { Maps } from './maps/mapa.js';
 
 function App() {
-  console.log("Testando esssa poha");
+  console.log("Testando essa poha");
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginEntra />} /> {/* Página inicial */}
+        <Route path="/login" element={<LoginEntra />} /> {/* Página inicial */}
         <Route path="/splash" element={<SplashScreen />} />
         <Route path="/signUp" element={<SignUpCadastro />} />
         <Route path="/login" element={<LoginEntra />} /> {/* Página de login */}
@@ -19,5 +19,6 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;
