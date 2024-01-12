@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/JuhhSobrinho/Ecom-Web/static/css/main.c5eb2b2b.css",
+    "main.js": "/JuhhSobrinho/Ecom-Web/static/js/main.02d18cc1.js",
+    "static/js/787.b4b0043a.chunk.js": "/JuhhSobrinho/Ecom-Web/static/js/787.b4b0043a.chunk.js",
+    "static/media/fundo-perfil.png": "/JuhhSobrinho/Ecom-Web/static/media/fundo-perfil.1147f23a3e0a792be969.png",
+    "static/media/logo.svg": "/JuhhSobrinho/Ecom-Web/static/media/logo.f39626cc0036836d7cc0db0e5db6949e.svg",
+    "index.html": "/JuhhSobrinho/Ecom-Web/index.html",
+    "main.c5eb2b2b.css.map": "/JuhhSobrinho/Ecom-Web/static/css/main.c5eb2b2b.css.map",
+    "main.02d18cc1.js.map": "/JuhhSobrinho/Ecom-Web/static/js/main.02d18cc1.js.map",
+    "787.b4b0043a.chunk.js.map": "/JuhhSobrinho/Ecom-Web/static/js/787.b4b0043a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c5eb2b2b.css",
+    "static/js/main.02d18cc1.js"
+  ]
+}
