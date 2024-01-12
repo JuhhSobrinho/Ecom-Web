@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { collection, addDoc, serverTimestamp, updateDoc, doc, getDoc, deleteDoc } from 'firebase/firestore';
+import { collection, setDoc, serverTimestamp, updateDoc, doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../model/model';
 import "../style/global.css";
 import { } from "../maps/mapa.js";
@@ -7,12 +7,18 @@ import { getLatLngFromAddress } from "../model/apiLatlon.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Shell from '../img/shell.png';
+import SeteEstrelas from '../img/seteEstrelas.png';
+import Petrobras    from '../img/Petrobras.png';
+import SemBandeira from '../img/Sem Bandeira.png';
+import Ipiranga from "../img/Ipiranga.png";
+
 const timestamp = serverTimestamp();
 
 
 const addPostos = async (nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude) => {
     try {
-        await addDoc(collection(db, "postos"), {
+        await setDoc(collection(db, "postos"), {
             id: "4",
             nome: nomePosto,
             endereco: enderecoPosto,
@@ -106,6 +112,24 @@ export function AddPosto() {
     const [precoEtanolPosto, setprecoEtanolPosto] = useState(2.3);
     const [precoGasoPosto, setprecoGasoPosto] = useState(2.4);
 
+
+    function getIconUrlByBandeira(bandeira) {
+        switch (bandeira) {
+            case 'Shell':
+                return Shell;
+            case 'SeteEstrelas':
+                return SeteEstrelas;
+            case 'Petrobras':
+                return Petrobras;
+            case 'Ipiranga':
+                return Ipiranga;
+            case 'Sem Bandeira':
+                return SemBandeira;
+            default:
+                return SemBandeira; // Ou outro ícone padrão para bandeiras desconhecidas
+        }
+    }
+
     const styleCard = (topPx) => {
         const cards = document.getElementsByClassName('VisuAddPosto');
 
@@ -124,7 +148,8 @@ export function AddPosto() {
                     if (cordenadas) {
                         const { latitude, longitude } = cordenadas;
                         let avaPosto = (avaliacao / 2);
-                        addPostos(nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude);
+                        let auxbandSelect = bandeirasSelecionadas;
+                        addPostos(nomePosto, enderecoPosto, auxbandSelect, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude);
 
                     }
 
@@ -249,7 +274,7 @@ export function AddPosto() {
         }
     };
 
-
+    console.log(bandeirasSelecionadas);
 
     return (
         <div className="telaPosto">
@@ -258,7 +283,7 @@ export function AddPosto() {
                 <div className='posto-main-card'>
                     <div className="postos">
                         <div className="iconPosto">
-                            <img src={`../../img/${bandeirasSelecionadas}.png`} alt="iconDoPosto" className='iconBand' />
+                            <img src={getIconUrlByBandeira(bandeirasSelecionadas[0])} alt="iconDoPosto" className='iconBand' />
                             <div className='backPorcento'>
                                 <div className='star' style={{ width: `${100 - ((avaliacao) * 10)}%` }}>
 
@@ -300,7 +325,7 @@ export function AddPosto() {
                             value="Shell"
                             checked={bandeirasSelecionadas.includes('Shell')}
                             onChange={handleCheckboxChange}
-                        />                        <img src="../../img/shell.png" className="iconDoPostoCheck" alt="ImageShell"></img>
+                        />                        <img src={Shell} className="iconDoPostoCheck" alt="ImageShell"></img>
                     </div>
                     <div className='checkBand'>
                         <input
@@ -309,7 +334,7 @@ export function AddPosto() {
                             value="Petrobras"
                             checked={bandeirasSelecionadas.includes('Petrobras')}
                             onChange={handleCheckboxChange}
-                        />                        <img src="../../img/Petrobras.png" className="iconDoPostoCheck" alt="ImagePetrobras"></img>
+                        />                        <img src={Petrobras} className="iconDoPostoCheck" alt="ImagePetrobras"></img>
                     </div>                    <div className='checkBand'>
                         <input
                             className='checkBoxStyle'
@@ -317,7 +342,7 @@ export function AddPosto() {
                             value="SeteEstrelas"
                             checked={bandeirasSelecionadas.includes('SeteEstrelas')}
                             onChange={handleCheckboxChange}
-                        />                        <img src="../../img/seteEstrelas.png" className="iconDoPostoCheck" alt="Image7estrelas"></img>
+                        />                        <img src={SeteEstrelas} className="iconDoPostoCheck" alt="Image7estrelas"></img>
                     </div>                    <div className='checkBand'>
                         <input
                             className='checkBoxStyle'
@@ -325,7 +350,7 @@ export function AddPosto() {
                             value="Ipiranga"
                             checked={bandeirasSelecionadas.includes('Ipiranga')}
                             onChange={handleCheckboxChange}
-                        />                        <img src="../../img/Ipiranga.png" className="iconDoPostoCheck" alt="ImageIpiranga"></img>
+                        />                        <img src={Ipiranga} className="iconDoPostoCheck" alt="ImageIpiranga"></img>
                     </div>                    <div className='checkBand'>
                         <input
                             className='checkBoxStyle'
@@ -333,7 +358,7 @@ export function AddPosto() {
                             value="Sem Bandeira"
                             checked={bandeirasSelecionadas.includes('Sem Bandeira')}
                             onChange={handleCheckboxChange}
-                        />                        <img src="../../img/Sem bandeira.png" className="iconDoPostoCheck" alt="ImageSemBandeira"></img>
+                        />                        <img src={SemBandeira} className="iconDoPostoCheck" alt="ImageSemBandeira"></img>
                     </div>
                 </div>
                 <div className='linha'></div>

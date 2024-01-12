@@ -2,6 +2,12 @@ import React, { useEffect, useState } from 'react';
 import {firePosto} from '../controller/controller';
 import "../style/global.css";
 
+import Shell from '../img/shell.png';
+import SeteEstrelas from '../img/seteEstrelas.png';
+import Petrobras    from '../img/Petrobras.png';
+import SemBandeira from '../img/Sem Bandeira.png';
+import Ipiranga from "../img/Ipiranga.png";
+
 export function MediaPreco() {
     const [postos, setPostos] = useState([]);
     const [media, setMedia] = useState(0);
@@ -11,6 +17,24 @@ export function MediaPreco() {
 
     const [typePreco, setTypePreco] = useState('precoG');
     const postosData = firePosto;
+
+
+    function getIconUrlByBandeira(bandeira) {
+        switch (bandeira) {
+            case 'Shell':
+                return Shell;
+            case 'SeteEstrelas':
+                return SeteEstrelas;
+            case 'Petrobras':
+                return Petrobras;
+            case 'Ipiranga':
+                return Ipiranga;
+            case 'Sem Bandeira':
+                return SemBandeira;
+            default:
+                return SemBandeira; // Ou outro ícone padrão para bandeiras desconhecidas
+        }
+    }
     
     useEffect(() => {
         const fetchPostos = async () => {
@@ -74,7 +98,7 @@ export function MediaPreco() {
                         {postos.map((postos) => (
                             <div key={`media+${postos.id}`} className='card-dados'>
                                 <div className='card-preco'>
-                                    <img src={`../../img/${postos.bandeira}.png`} alt="iconDoPosto" className='icon-band-media' />
+                                    <img src={getIconUrlByBandeira(postos.bandeira[0])} alt="iconDoPosto" className='icon-band-media' />
                                     <span className='tabela-dados-posto' id='tabela-nome-posto'>{postos.nome}</span>
                                     <span className='tabela-dados-posto' id='tabela-preco-posto' style={{ color: postos[typePreco] >= media ? '#EB6C6C' : '#8BFFAC' }}>{postos[typePreco]}</span>
                                 </div>

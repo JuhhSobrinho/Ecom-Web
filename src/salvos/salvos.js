@@ -5,6 +5,12 @@ import { db } from "../model/model";
 import { View } from '../view';
 import "../style/global.css";
 
+import copyFt from '../img/copy.svg';
+import Shell from '../img/shell.png';
+import SeteEstrelas from '../img/seteEstrelas.png';
+import Petrobras    from '../img/Petrobras.png';
+import SemBandeira from '../img/Sem Bandeira.png';
+import Ipiranga from "../img/Ipiranga.png";
 
 const addSalvoBd = async (dados, uidAtual) => {
   const minhaColecao = doc(db, 'users', uidAtual);
@@ -21,6 +27,24 @@ export function SalvosPostos() {
   const statusSaveRef = useRef(statusSave);
 
   const postosData = firePosto;
+
+
+  function getIconUrlByBandeira(bandeira) {
+    switch (bandeira) {
+        case 'Shell':
+            return Shell;
+        case 'SeteEstrelas':
+            return SeteEstrelas;
+        case 'Petrobras':
+            return Petrobras;
+        case 'Ipiranga':
+            return Ipiranga;
+        case 'Sem Bandeira':
+            return SemBandeira;
+        default:
+            return SemBandeira; // Ou outro ícone padrão para bandeiras desconhecidas
+    }
+}
   // Restante do código...
 
   const copiaCola = async (postId) => {
@@ -122,10 +146,10 @@ export function SalvosPostos() {
           <div className="postos" onClick={() => copiaCola(posto.id)}>
             <div className="iconPosto">
               <div className='copy'>
-                <img src={'../../img/copy.svg'} onClick={() => copiaCola(posto.id)} alt="Id-copiar" className='iconCopy' />
+                <img src={copyFt} onClick={() => copiaCola(posto.id)} alt="Id-copiar" className='iconCopy' />
                 <p className='diasAtras' id='statusCopiado' style={{ display: statusCopiadoVisible[posto.id] ? 'flex' : 'none' }} >ID copied!</p>
               </div>
-              <img src={`../../img/${posto.bandeira}.png`} alt="iconDoPosto" className='iconBand' />
+              <img src={getIconUrlByBandeira(posto.bandeira[0])} alt="iconDoPosto" className='iconBand' />
               <div className='backPorcento'>
                 <div className='star' style={{ width: `${100 - (((posto.avaliacao) * 2) * 10)}%` }}>
 

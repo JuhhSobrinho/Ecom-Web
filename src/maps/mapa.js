@@ -11,6 +11,16 @@ import { MenuGuias } from "../menu/menu";
 import { firePosto } from "../controller/controller";
 import { ToastContainer, toast } from 'react-toastify';
 
+import copyFt from '../img/copy.svg';
+import Shell from '../img/shell.png';
+import SeteStrelas from '../img/seteEstrelas.png';
+import Petrobras from '../img/Petrobras.png';
+import Ipiranga from "../img/Ipiranga.png";
+import SemBandeira from '../img/Sem Bandeira.png';
+
+
+
+
 export function Maps() {
     const array = [-22.9236, -45.4598];
     const [postos, setPostos] = useState([]);
@@ -18,6 +28,23 @@ export function Maps() {
     const [setaGuia, setSetaGuia] = useState(true);
 
     const viewResult = View({ estado: 1 });
+
+    function getIconUrlByBandeira(bandeira) {
+        switch (bandeira) {
+            case 'Shell':
+                return Shell;
+            case 'SeteEstrelas':
+                return SeteStrelas;
+            case 'Petrobras':
+                return Petrobras;
+            case 'Ipiranga':
+                return Ipiranga;
+            case 'Sem Bandeira':
+                return SemBandeira;
+            default:
+                return SemBandeira; // Ou outro ícone padrão para bandeiras desconhecidas
+        }
+    }
 
     const copiaCola = async (postId) => {
         // Lógica para copiar o texto...
@@ -47,7 +74,7 @@ export function Maps() {
     useEffect(() => {
         firePosto.forEach((data) => {
             const positions = [data.lat, data.lon];
-            const iconUrl = `../../img/${data.bandeira}.png`;
+            const iconUrl = `${getIconUrlByBandeira(data.bandeira[0])}`;
             const customIcon = L.icon({
                 iconUrl,
                 iconSize: [35, 35],
@@ -102,10 +129,10 @@ export function Maps() {
                                     <div className="postos" onClick={() => copiaCola(idKey)}>
                                         <div className="iconPosto">
                                             <div className='copy'>
-                                                <img src={'../../img/copy.svg'} onClick={() => copiaCola(idKey)} alt="Id-copiar" className='iconCopy' />
+                                                <img src={copyFt} onClick={() => copiaCola(idKey)} alt="Id-copiar" className='iconCopy' />
                                                 <p className='diasAtras' style={{ display: statusCopiadoVisible[idKey] ? 'flex' : 'none' }} id='statusCopiado'>ID copied!</p>
                                             </div>
-                                            <img src={`../../img/${data.bandeira}.png`} alt="iconDoPosto" className='iconBand' />
+                                            <img src={getIconUrlByBandeira(data.bandeira[0])} alt="iconDoPosto" className='iconBand' />
                                             <div className='backPorcento'>
                                                 <div className='star' style={{ width: `${100 - (((data.avaliacao) * 2) * 10)}%` }}>
 

@@ -713,7 +713,7 @@ p {
 .fundo-user{
   position: absolute;
   z-index: 0;
-  background-image: url("../../public/img/fundo-perfil.png");
+  background-image: url("../img/fundo-perfil.png");
   height: 100%;
   width: 100%;
   background-repeat: no-repeat;
