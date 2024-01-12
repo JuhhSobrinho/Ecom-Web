@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import SplashScreen from './splash';
+import SplashScreen from './splash.js';
 import { Link, useNavigate } from 'react-router-dom';  ///npm install react-router-dom
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
