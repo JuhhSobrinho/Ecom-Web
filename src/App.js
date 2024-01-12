@@ -10,7 +10,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginEntra />} /> {/* Página inicial */}
+        <Route element={<LoginEntra />} index />
+        <Route element={<LoginEntra />} path="/login" /> {/* Página inicial */}
         <Route path="/splash" element={<SplashScreen />} />
         <Route path="/signUp" element={<SignUpCadastro />} />
         <Route path="/login" element={<LoginEntra />} /> {/* Página de login */}
