@@ -166,7 +166,7 @@ export function Maps() {
                 </MapContainer>
             </div>
 
-            <button className='btn-seta-guia' onClick={handleSetaGuia} style={{ right: setaGuia ? ' 325px' : "18px", transition: '1s' }}>
+            <button className='btn-seta-guia' onClick={handleSetaGuia} style={{ right: setaGuia ? ' 340px' : "18px", transition: '0.5s' }}>
                 {setaGuia
                     ? (
                         <lord-icon

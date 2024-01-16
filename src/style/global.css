@@ -52,7 +52,7 @@ a{
   align-items: center;
   flex-direction: column;
   width: 370px;
-  transition: 0.5s;
+  transition: 1s;
 }
 
 .telaPosto {
@@ -149,7 +149,7 @@ a{
 }
 
 .descricaoPosto {
-  width: 50%;
+  width: auto;
   justify-content: center;
   align-items: flex-start;
   color: rgba(0, 0, 0, 0.6);
@@ -816,4 +816,12 @@ p {
 
 #mensagem-contato{
   height: 100px;
+}
+
+
+@media screen and (max-width: 750px) {
+  .nomeDoPosto {
+    font-size: 16px;
+    color: #1f7a8c;
+  }
 }

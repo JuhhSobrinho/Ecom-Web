@@ -278,6 +278,10 @@
     align-items: center;
   }
 
+  .login-sing-up {
+    margin-right: 0px;
+  }
+
   .descricao {
     color: #bfdbf7;
     width: 300px;

@@ -94,11 +94,11 @@ function SignUpCadastro() {
             <section className='formulario'>
               <div className='dados'>
                 <span className='topico'>Email: </span>
-                <input className='descricao' type='email' placeholder='ex: deusdamentira@gmail.com' onChange={handleEmail}></input>
+                <input className='descricao' type='email' placeholder='ex: user@gmail.com' onChange={handleEmail}></input>
               </div>
               <div className='dados'>
                 <span className='topico'>Senha: </span>
-                <input className='descricao' type={mostrarSenha ? 'text' : 'password'} placeholder='ex: ******************' onChange={handleSenha}></input>
+                <input className='descricao' type={mostrarSenha ? 'text' : 'password'} placeholder='ex: ******' onChange={handleSenha}></input>
               </div>
               <button type="button" className='button-olhos' onClick={toggleMostrarSenha}>
                 {mostrarSenha ? (
