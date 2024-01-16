@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Shell from '../img/shell.png';
 import SeteEstrelas from '../img/seteEstrelas.png';
-import Petrobras    from '../img/Petrobras.png';
+import Petrobras from '../img/Petrobras.png';
 import SemBandeira from '../img/Sem Bandeira.png';
 import Ipiranga from "../img/Ipiranga.png";
 
@@ -142,18 +142,17 @@ export function AddPosto() {
     function callAdd() {
         styleCard('420');
         if (nomePosto !== "Nome Do Posto" && nomePosto !== '' && enderecoPosto !== "Endereço Do Posto" && enderecoPosto !== '') {
-            getLatLngFromAddress(enderecoPosto, nomePosto)
-                .then((cordenadas) => {
-                    // A Promise foi resolvida, agora você pode acessar as coordenadas
-                    if (cordenadas) {
-                        const { latitude, longitude } = cordenadas;
-                        let avaPosto = (avaliacao / 2);
-                        let auxbandSelect = bandeirasSelecionadas;
-                        addPostos(nomePosto, enderecoPosto, auxbandSelect, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude);
+            getLatLngFromAddress(enderecoPosto, nomePosto).then((cordenadas) => {
+                // A Promise foi resolvida, agora você pode acessar as coordenadas
+                if (cordenadas) {
+                    const { latitude, longitude } = cordenadas;
+                    let avaPosto = (avaliacao / 2);
+                    let auxbandSelect = bandeirasSelecionadas;
+                    addPostos(nomePosto, enderecoPosto, auxbandSelect, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude);
 
-                    }
+                }
 
-                })
+            })
                 .catch((error) => {
                     console.error("Erro ao obter coordenadas: ", error);
                 });
