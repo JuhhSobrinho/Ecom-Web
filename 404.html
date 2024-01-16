@@ -2,17 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <link rel="icon" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="logo192.png" />
+
+    <link rel="manifest" href="manifest.json" />
+
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <title>Ecom</title>
   </head>
   <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
     <script>
-      // Redirecionar para o caminho raiz ("/") ao carregar a página 404
-      if (window.location.pathname !== '/') {
-        window.location.replace('/');
-      }
+      // Redireciona para a página principal quando ocorre um erro 404
+      window.location.replace("/Ecom-Web");
     </script>
   </body>
 </html>
