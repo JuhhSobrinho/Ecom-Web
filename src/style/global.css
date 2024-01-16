@@ -35,11 +35,12 @@ a{
 }
 
 .btn-seta-guia{
-  border: none;
-  background-color: transparent;
+  border-radius: 15px 0px 0px 15px;
+  border-color: transparent;
+  background-color: #022b3a;
   position: absolute;
-  right: 28%;
-  top: 0;
+  right: 375px;
+  top: 20px;
   cursor: pointer;
   transition: 0.5s;
 }

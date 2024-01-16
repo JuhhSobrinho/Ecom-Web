@@ -116,7 +116,7 @@ export function Maps() {
             <SplashScreen />
             <View />
             <ToastContainer />
-            <div style={{ width: '100%' }} >
+            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center' }} >
                 <MapContainer center={array} zoom={14} className='MapaConteiner'>
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -166,25 +166,23 @@ export function Maps() {
                 </MapContainer>
             </div>
 
-            <button className='btn-seta-guia' onClick={handleSetaGuia} style={{ right: setaGuia ? ' 28%' : "25px", transition: '1s' }}>
+            <button className='btn-seta-guia' onClick={handleSetaGuia} style={{ right: setaGuia ? ' 325px' : "18px", transition: '1s' }}>
                 {setaGuia
                     ? (
                         <lord-icon
-                            src="https://cdn.lordicon.com/vduvxizq.json"
-                            trigger="click"
+                            src="https://cdn.lordicon.com/ternnbni.json"
+                            trigger="hover"
                             colors="primary:#1f7a8c"
-                            state="hover-ternd-flat-3"
-                            style={{ width: '60px', height: '60px' }}
+                            style={{ width: '30px', height: '30px', transform: 'rotate(90deg)' }}
                         >
                         </lord-icon>
                     )
                     : (
                         <lord-icon
-                            src="https://cdn.lordicon.com/vduvxizq.json"
-                            trigger="click"
+                            src="https://cdn.lordicon.com/ternnbni.json"
+                            trigger="hover"
                             colors="primary:#1f7a8c"
-                            state="hover-ternd-flat-3"
-                            style={{ width: '60px', height: '60px', transform: 'rotate(180deg)' }}
+                            style={{ width: '30px', height: '30px', transform: 'rotate(-90deg)' }}
                         >
                         </lord-icon>
                     )

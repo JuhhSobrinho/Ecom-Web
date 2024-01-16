@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  width: 100%;
+  background-color: #022b3a;
 }
 
 .main {
@@ -218,4 +220,81 @@
   background-color: transparent;
   border: none;
   margin: 0px;
+}
+
+
+
+
+
+
+@media screen and (max-width: 1800px) {
+  .main {
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .App-header {
+    min-height: 30vh;
+    background-color: #1f7a8c;
+    width: auto;
+    align-items: center;
+    justify-content:flex-end;
+    overflow: hidden;
+  }
+
+  .header {
+    width: 90%;
+    height: 20%;
+    border-radius: 5px 5px 0px 0px;
+  }
+
+  .App-logo {
+    height: 20vmin;
+    pointer-events: none;
+  }
+
+  .titulo {
+    font-size: 60px;
+    font-weight: 400;
+  }
+
+
+
+  .app-login {
+    background-color: #022b3a;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-start;
+    color: white;
+    width: auto;
+  }
+
+  .login {
+    width: 90%;
+    height: 607px;
+    border-radius: 0px 0px 5px 5px;
+    align-items: center;
+  }
+
+  .descricao {
+    color: #bfdbf7;
+    width: 300px;
+    font-size: 23px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid;
+    border-color: #e1e5f2;
+    padding-right: 0px;
+  }
+
+  .formulario {
+    width: 90%;
+    margin-top: 50px;
+  }
+  
+  .dados-botao{
+    width: auto;
+  }
 }
