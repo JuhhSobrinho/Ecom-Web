@@ -116,7 +116,7 @@ export function Mapa() {
             <SplashScreen />
             <View />
             <ToastContainer />
-            <div className='main-mapa' style={{ width: setaGuia ? '100%' : '100%', transition: '0.5s', ...(window.innerWidth <= 750 && (setaGuia ? { display: 'flex'} : { display: 'flex'})) }}>
+            <div className='main-mapa' style={{ width: setaGuia ? '100%' : '100%', transition: '0.5s' }}>
                 <MapContainer center={array} zoom={14} className='MapaConteiner'>
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

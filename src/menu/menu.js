@@ -39,7 +39,7 @@ export function MenuGuias({ estado = true }) {
 
 
     return (
-        <div id="tipoDeTelas" style={{ width: estado ? ' 375px'  : "0px", ...(window.innerWidth <= 750 && (estado ? { width: '100%', height: '100%'} : { width: '0px'})) }}>
+        <div id="tipoDeTelas" style={{ width: estado ? ' 375px'  : "0px", ...(window.innerWidth <= 750 && (estado ? { width: '100%'} : { width: '0px'})) }}>
 
             {guiasComponents[getGuias]}
 
