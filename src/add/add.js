@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { collection, setDoc, serverTimestamp, updateDoc, doc, getDoc, deleteDoc } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, updateDoc, doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../model/model';
 import { getLatLngFromAddress } from "../model/apiLatlon.js";
 import "../style/global.css";
@@ -18,7 +18,7 @@ const timestamp = serverTimestamp();
 
 const addPostos = async (nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude) => {
     try {
-        await setDoc(collection(db, "postos"), {
+        await addDoc(collection(db, "postos"), {
             id: "4",
             nome: nomePosto,
             endereco: enderecoPosto,
