@@ -11,8 +11,6 @@ export const getLatLngFromAddress = async (address, posto) => {
         const location = data.resourceSets[0].resources[0].point.coordinates;
         const latitude = location[0];
         const longitude = location[1];
-
-        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
         return { latitude, longitude };
     } else {
         toast.info(`\n ERRO ao obter o endereço do ${posto}`, {

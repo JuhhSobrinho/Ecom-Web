@@ -273,8 +273,6 @@ export function AddPosto() {
         }
     };
 
-    console.log(bandeirasSelecionadas);
-
     return (
         <div className="telaPosto">
             <div className='VisuAddPosto'>

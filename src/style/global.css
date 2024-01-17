@@ -867,6 +867,7 @@ p {
   #tipoDeTelas {
     margin: 0px;
     height: 98vh;
+    width: 100%;
     transition: 0.2s;
     position: absolute;
     background-color: #022b3a;

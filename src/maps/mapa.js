@@ -108,7 +108,6 @@ export function Mapa() {
     const handleSetaGuia = () => {
         setSetaGuia(!setaGuia);
     }
-    console.log(setaGuia);
 
 
     return (

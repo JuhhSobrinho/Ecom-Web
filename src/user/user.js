@@ -162,8 +162,8 @@ export function UserConfig() {
                             <span className='nomeDoPosto'>Sobre</span>
                             <div className='line-user'></div>
                         </button>
-                        <a href="https://www.exemplo.com">
-                            <button type="button" className="btn-user" href="https://www.exemplo.com">
+                        <a href="https://juhhsobrinho.github.io/Portfolio/view/index.html">
+                            <button type="button" className="btn-user">
                                 <lord-icon
                                     src="https://cdn.lordicon.com/zorvjzqh.json"
                                     trigger="hover"

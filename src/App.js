@@ -7,7 +7,7 @@ import {Mapa} from './maps/mapa.js';
 import Refresh from './refresh.js';
 
 function App() {
-  console.log("Tela App");
+  console.log("Salve Salve fml");
 
 
   return (
