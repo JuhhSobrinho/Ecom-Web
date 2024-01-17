@@ -162,7 +162,7 @@ export function UserConfig() {
                             <span className='nomeDoPosto'>Sobre</span>
                             <div className='line-user'></div>
                         </button>
-                        <a href="https://juhhsobrinho.github.io/Portfolio/view/index.html">
+                        <a href="https://juhhsobrinho.github.io/Portfolio/">
                             <button type="button" className="btn-user">
                                 <lord-icon
                                     src="https://cdn.lordicon.com/zorvjzqh.json"
