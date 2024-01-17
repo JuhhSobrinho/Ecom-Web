@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/Ecom-Web/static/css/main.1f8c94d5.css",
-    "main.js": "/Ecom-Web/static/js/main.6fb0967b.js",
+    "main.css": "/Ecom-Web/static/css/main.04701157.css",
+    "main.js": "/Ecom-Web/static/js/main.7624b8d9.js",
     "static/js/787.b4b0043a.chunk.js": "/Ecom-Web/static/js/787.b4b0043a.chunk.js",
-    "static/media/fundo-perfil.png": "/Ecom-Web/static/media/fundo-perfil.1147f23a3e0a792be969.png",
+    "static/media/fundo-perfilGpng.png": "/Ecom-Web/static/media/fundo-perfilGpng.cbaa91997453be450c48.png",
     "static/media/Petrobras.png": "/Ecom-Web/static/media/Petrobras.a98e4a61781cfac9360d.png",
     "static/media/Ipiranga.png": "/Ecom-Web/static/media/Ipiranga.03dc24eb015973b98607.png",
     "static/media/Sem Bandeira.png": "/Ecom-Web/static/media/Sem Bandeira.eead72000b030e0a4c1b.png",
@@ -15,12 +15,12 @@
     "static/media/media.svg": "/Ecom-Web/static/media/media.fad23a5f1cf8aca5e742287cd9544636.svg",
     "static/media/add.svg": "/Ecom-Web/static/media/add.968699a99ec5f274a4bb371518dbd0fc.svg",
     "static/media/salvo.svg": "/Ecom-Web/static/media/salvo.1a02671788d9210c05634b14c7ffd980.svg",
-    "main.1f8c94d5.css.map": "/Ecom-Web/static/css/main.1f8c94d5.css.map",
-    "main.6fb0967b.js.map": "/Ecom-Web/static/js/main.6fb0967b.js.map",
+    "main.04701157.css.map": "/Ecom-Web/static/css/main.04701157.css.map",
+    "main.7624b8d9.js.map": "/Ecom-Web/static/js/main.7624b8d9.js.map",
     "787.b4b0043a.chunk.js.map": "/Ecom-Web/static/js/787.b4b0043a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1f8c94d5.css",
-    "static/js/main.6fb0967b.js"
+    "static/css/main.04701157.css",
+    "static/js/main.7624b8d9.js"
   ]
 }
