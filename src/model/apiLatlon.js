@@ -3,7 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const getLatLngFromAddress = async (address, posto) => {
     const apiKey = 'AsijwrZ5bwVA7oP1Gg0i61_46A6-y_fwb3SfMbcgBqUQLuX8Bz7SX4Y-tlxipxff';
-    const response = await fetch(`http://dev.virtualearth.net/REST/v1/Locations?q=${encodeURIComponent(address)}&key=${apiKey}`);
+    const response = await fetch(`https://dev.virtualearth.net/REST/v1/Locations?q=${encodeURIComponent(address)}&key=${apiKey}`);
     const data = await response.json();
 
     // Verifica se há resultados
