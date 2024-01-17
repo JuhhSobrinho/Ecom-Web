@@ -166,7 +166,14 @@ export function Mapa() {
                 </MapContainer>
             </div>
 
-            <button className='btn-seta-guia' onClick={handleSetaGuia} style={{ right: setaGuia ? ' 340px' : "18px", transition: '0.5s', zIndex: '1', ...(window.innerWidth <= 750 && { right: setaGuia ? '310px' : '18px' }) }}>
+            <button
+                className='btn-seta-guia'
+                onClick={handleSetaGuia}
+                style={{
+                    right: setaGuia ? '340px' : '18px',
+                    zIndex: '1',
+                    ...(window.innerWidth <= 750 && (setaGuia ? { left: '0px'} : { right: '0px'}))
+                }}>
                 {setaGuia
                     ? (
                         <lord-icon

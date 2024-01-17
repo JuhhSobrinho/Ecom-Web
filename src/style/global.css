@@ -1,6 +1,6 @@
 :root {
   width: 100%;
-  background-color: #022b3a;
+  background-color: #1f7a8c;
 }
 
 a {
@@ -60,7 +60,7 @@ a {
   align-items: center;
   flex-direction: column;
   width: 370px;
-  transition: 1s;
+  transition: 0.2s;
 }
 
 .telaPosto {
@@ -107,6 +107,7 @@ a {
   display: flex;
   align-items: center;
   flex-direction: column;
+  right: 340px;
 }
 
 .postos {
@@ -343,6 +344,7 @@ p {
   flex-direction: column;
   align-items: center;
   margin: 2px;
+  justify-content: space-evenly;
 }
 
 .tipoBandeira {
@@ -644,7 +646,7 @@ p {
 
 .tabela-precos {
   width: 290px;
-  height: 180px;
+  height: 40%;
   border-radius: 10px;
   background: #2a3447;
   overflow: hidden;
@@ -721,12 +723,12 @@ p {
 .fundo-user {
   position: absolute;
   z-index: 0;
-  background-image: url("../img/fundo-perfil.png");
+  background-image: url("../img/fundo-perfilGpng.png");
   height: 100%;
   width: 100%;
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-position: center;
+  background-repeat:no-repeat;
+  background-size:auto;
+  background-position:right;
   filter: blur(5px);
 }
 
@@ -852,6 +854,32 @@ p {
     right: 375px;
     top: 20px;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.3s;
+  }
+
+  .btn-seta-guia {
+    width: 40px;
+  }
+
+  .posto-main-card {
+    right: 450px;
+  }
+
+  .sair {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  
+  .fundo-user {
+    position: absolute;
+    z-index: 0;
+    background-image: url("../img/fundo-perfilGpng.png");
+    height: 100%;
+    width: 100%;
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position: top;
+    filter: blur(5px);
   }
 }

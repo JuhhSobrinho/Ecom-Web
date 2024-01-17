@@ -39,7 +39,7 @@ export function MenuGuias({ estado = true }) {
 
 
     return (
-        <div id="tipoDeTelas" style={{ width: estado ? ' 375px' : "0px", transition: '0.5s'}}>
+        <div id="tipoDeTelas" style={{ width: estado ? ' 375px'  : "0px"}}>
 
             {guiasComponents[getGuias]}
 
