@@ -21,7 +21,7 @@ import SemBandeira from '../img/Sem Bandeira.png';
 
 
 
-export function Maps() {
+export function Mapa() {
     const array = [-22.9236, -45.4598];
     const [postos, setPostos] = useState([]);
     const [statusCopiadoVisible, setStatusCopiadoVisible] = useState(false);
