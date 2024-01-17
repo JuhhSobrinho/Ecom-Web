@@ -1,8 +1,9 @@
 :root {
   width: 100%;
+  background-color: #022b3a;
 }
 
-a{
+a {
   text-decoration: none;
   color: #bfdbf7;
 }
@@ -15,6 +16,13 @@ a{
   height: 100vh;
   align-items: center;
   justify-content: space-around;
+}
+
+.main-mapa {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .MapaConteiner {
@@ -34,7 +42,7 @@ a{
   box-shadow: 0px 0px 10px 1px #90d9e7;
 }
 
-.btn-seta-guia{
+.btn-seta-guia {
   border-radius: 15px 0px 0px 15px;
   border-color: transparent;
   background-color: #022b3a;
@@ -88,18 +96,17 @@ a{
 /* //////////////////////////////////////////////////*/
 
 .posto-main {
-  position:relative;
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
-.posto-main-card{
-  position:fixed;
+.posto-main-card {
+  position: fixed;
   display: flex;
   align-items: center;
   flex-direction: column;
-  right: 28%;
 }
 
 .postos {
@@ -186,7 +193,7 @@ a{
   color: #1f7a8c;
 }
 
-.preco-salvo{
+.preco-salvo {
   display: flex;
   align-items: flex-start;
 }
@@ -199,7 +206,7 @@ p {
   margin: 0px !important;
 }
 
-.btn-save{
+.btn-save {
   border: none;
   margin: none;
   width: 15px;
@@ -711,14 +718,14 @@ p {
 /* //////////////////////////////////////////////////*/
 /* //////////////////////////////////////////////////*/
 
-.fundo-user{
+.fundo-user {
   position: absolute;
   z-index: 0;
   background-image: url("../img/fundo-perfil.png");
   height: 100%;
   width: 100%;
   background-repeat: no-repeat;
-  background-size:auto;
+  background-size: auto;
   background-position: center;
   filter: blur(5px);
 }
@@ -729,24 +736,24 @@ p {
   width: 100%;
 }
 
-.perfil-sair{
+.perfil-sair {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 10px;
 }
 
-.sair{
+.sair {
   display: flex;
   justify-content: space-between;
 }
 
-.txt-sair{
+.txt-sair {
   color: #ff2200;
   font: 18px;
 }
 
-.perfil{
+.perfil {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -758,7 +765,7 @@ p {
   border-radius: 100%;
   border-color: #e1e5f2;
   padding: 10px;
-  border-width: 1px;  
+  border-width: 1px;
   transition: 0.5s;
 }
 
@@ -767,25 +774,25 @@ p {
   border-color: #8bffac;
 }
 
-.email-user{
+.email-user {
   color: #f7fdff;
   font-family: monospace;
   font-size: 20px;
   font-weight: 100;
 }
 
-.line-user{
+.line-user {
   width: 90%;
   height: 1px;
   background-color: #93fff8;
 }
 
-.sobre-salvos-contato{
+.sobre-salvos-contato {
   display: flex;
   justify-content: space-evenly;
 }
 
-.btn-user{
+.btn-user {
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -794,7 +801,7 @@ p {
   align-items: center;
 }
 
-.sobre-descricao{
+.sobre-descricao {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -802,7 +809,7 @@ p {
   padding: 20px;
 }
 
-#main-contao{
+#main-contao {
   display: flex;
   width: 92%;
   height: 98%;
@@ -814,14 +821,37 @@ p {
   margin: 2px;
 }
 
-#mensagem-contato{
+#mensagem-contato {
   height: 100px;
 }
-
 
 @media screen and (max-width: 750px) {
   .nomeDoPosto {
     font-size: 16px;
     color: #1f7a8c;
+  }
+
+  .mapa{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-mapa {
+    width: 0%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .btn-seta-guia {
+    border-radius: 15px 5px 5px 15px;
+    border-color: transparent;
+    background-color: #022b3a;
+    position: absolute;
+    right: 375px;
+    top: 20px;
+    cursor: pointer;
+    transition: 0.5s;
   }
 }

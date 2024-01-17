@@ -116,7 +116,7 @@ export function Mapa() {
             <SplashScreen />
             <View />
             <ToastContainer />
-            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center' }} >
+            <div className='main-mapa' style={{ width: setaGuia ? '100%' : '100%', transition: '0.5s', ...(window.innerWidth <= 750 && { width: setaGuia ? '0%' : '100%' }) }}>
                 <MapContainer center={array} zoom={14} className='MapaConteiner'>
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -166,7 +166,7 @@ export function Mapa() {
                 </MapContainer>
             </div>
 
-            <button className='btn-seta-guia' onClick={handleSetaGuia} style={{ right: setaGuia ? ' 340px' : "18px", transition: '0.5s' }}>
+            <button className='btn-seta-guia' onClick={handleSetaGuia} style={{ right: setaGuia ? ' 340px' : "18px", transition: '0.5s', zIndex: '1', ...(window.innerWidth <= 750 && { right: setaGuia ? '310px' : '18px' }) }}>
                 {setaGuia
                     ? (
                         <lord-icon
