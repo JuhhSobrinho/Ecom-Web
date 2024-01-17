@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export async function getLatLngFromAddress(address, posto) {
+export const getLatLngFromAddress = async (address, posto) => {
     const apiKey = 'AsijwrZ5bwVA7oP1Gg0i61_46A6-y_fwb3SfMbcgBqUQLuX8Bz7SX4Y-tlxipxff';
     const response = await fetch(`http://dev.virtualearth.net/REST/v1/Locations?q=${encodeURIComponent(address)}&key=${apiKey}`);
     const data = await response.json();
@@ -31,6 +31,4 @@ export async function getLatLngFromAddress(address, posto) {
         return null;
     }
 }
-
-// Exemplo de uso
 
