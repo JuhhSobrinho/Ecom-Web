@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import SplashScreen from './splash';
 import SignUpCadastro from './signUp';
 import LoginEntra from './login.js';
-import {Mapa} from './maps/Mapa.js';
+import {Mapa} from './maps/mapa.js';
 
 function App() {
   console.log("Tela App");
@@ -16,7 +16,7 @@ function App() {
         <Route path="/splash" element={<SplashScreen />} />
         <Route path="/login" element={<LoginEntra />} />
         <Route path="/signUp" element={<SignUpCadastro />} />
-        <Route path="/maps/Mapa" element={<Mapa />} />
+        <Route path="/maps/mapa" element={<Mapa />} />
       </Routes>
     </Router>
   );

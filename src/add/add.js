@@ -3,7 +3,7 @@ import { collection, setDoc, serverTimestamp, updateDoc, doc, getDoc, deleteDoc 
 import { db } from '../model/model';
 import { getLatLngFromAddress } from "../model/apiLatlon.js";
 import "../style/global.css";
-import { } from "../maps/Mapa.js";
+import { } from "../maps/mapa.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
