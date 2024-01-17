@@ -4,7 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Page Not Found</title>
-    <meta http-equiv="refresh" content="0;url=/Ecom-Web/maps/mapa" />
+    <script>
+      if (window.location.pathname !== '/Ecom-Web/maps/mapa') {
+        window.location.href = '/Ecom-Web/maps/mapa';
+      }
+    </script>
   </head>
   <body>
     <!-- O corpo pode permanecer vazio ou conter uma mensagem para o usuário -->
