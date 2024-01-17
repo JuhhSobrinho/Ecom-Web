@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Ecom-Web/static/css/main.eb689813.css",
-    "main.js": "/Ecom-Web/static/js/main.0d3a15f4.js",
+    "main.css": "/Ecom-Web/static/css/main.4b690300.css",
+    "main.js": "/Ecom-Web/static/js/main.c3f32742.js",
     "static/js/787.b4b0043a.chunk.js": "/Ecom-Web/static/js/787.b4b0043a.chunk.js",
     "static/media/fundo-perfilGpng.png": "/Ecom-Web/static/media/fundo-perfilGpng.cbaa91997453be450c48.png",
     "static/media/Petrobras.png": "/Ecom-Web/static/media/Petrobras.a98e4a61781cfac9360d.png",
@@ -15,12 +15,12 @@
     "static/media/media.svg": "/Ecom-Web/static/media/media.fad23a5f1cf8aca5e742287cd9544636.svg",
     "static/media/add.svg": "/Ecom-Web/static/media/add.968699a99ec5f274a4bb371518dbd0fc.svg",
     "static/media/salvo.svg": "/Ecom-Web/static/media/salvo.1a02671788d9210c05634b14c7ffd980.svg",
-    "main.eb689813.css.map": "/Ecom-Web/static/css/main.eb689813.css.map",
-    "main.0d3a15f4.js.map": "/Ecom-Web/static/js/main.0d3a15f4.js.map",
+    "main.4b690300.css.map": "/Ecom-Web/static/css/main.4b690300.css.map",
+    "main.c3f32742.js.map": "/Ecom-Web/static/js/main.c3f32742.js.map",
     "787.b4b0043a.chunk.js.map": "/Ecom-Web/static/js/787.b4b0043a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb689813.css",
-    "static/js/main.0d3a15f4.js"
+    "static/css/main.4b690300.css",
+    "static/js/main.c3f32742.js"
   ]
 }
