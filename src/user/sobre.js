@@ -15,7 +15,7 @@ export function Sobre() {
                         <div className='line-user'></div>
                     </section>
                 </section>
-                <section className='sobre-descricao'>
+                <section className='sobre-descricao' >
                     <apan className='nomeDoPosto'>Projeto feito unicamente de uma pessoa, com fins de estudo e
                         aprendizado. EFP - Estudo Focado em Projetos</apan>
                     <p className='tabela-dados-posto'>
