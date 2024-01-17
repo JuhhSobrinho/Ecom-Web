@@ -1,6 +1,9 @@
 :root {
   width: 100%;
+  height: 100%;
   background-color: #1f7a8c;
+  margin: 0px;
+  padding: 0 auto;
 }
 
 a {
@@ -60,7 +63,7 @@ a {
   align-items: center;
   flex-direction: column;
   width: 370px;
-  transition: 0.2s;
+  transition: 0.5s;
 }
 
 .telaPosto {
@@ -646,7 +649,7 @@ p {
 
 .tabela-precos {
   width: 290px;
-  height: 40%;
+  height: 150px;
   border-radius: 10px;
   background: #2a3447;
   overflow: hidden;
@@ -860,6 +863,18 @@ p {
   .btn-seta-guia {
     width: 40px;
   }
+
+  #tipoDeTelas {
+    margin: 0px;
+    transition: 0.2s;
+    position: absolute;
+    background-color: #022b3a;
+  }
+
+  .tabela-precos {
+    height: 40%;
+  }
+
 
   .posto-main-card {
     right: 450px;

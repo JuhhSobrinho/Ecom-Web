@@ -87,3 +87,50 @@
   position: absolute;
   flex-shrink: 0;
 }
+
+
+@media screen and (max-width: 750px) {
+  .linhas1 {
+    width: 1000px;
+    height: 169.049px;
+    transform: rotate(120deg);
+    top: 60%;
+    left: -60%;
+    position: absolute;
+    background: rgba(2, 43, 58, 0.96);
+  }
+  
+  .linhas2 {
+    background: rgba(191, 219, 247, 0.8);
+    width: 1100px;
+    height: 69.166px;
+    transform: rotate(120deg);
+    top: 40%;
+    left: -80%;
+    position: absolute;
+    flex-shrink: 0;
+  }
+  
+  .linhas3 {
+    width: 100vw;
+    height: 92.068px;
+    transform: rotate(120deg);
+    top: 400px;
+    left:900px;
+    position: absolute;
+    flex-shrink: 0;
+    background: rgba(2, 43, 58, 0.96);
+  }
+  
+  .linhas4 {
+    background: rgba(191, 219, 247, 0.8);
+    width: 220.117px;
+    height: 36.224px;
+    transform: rotate(120deg);
+    top:30px;
+    left: -90px;
+    position: absolute;
+    flex-shrink: 0;
+  }
+  
+}
