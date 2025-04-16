@@ -13,13 +13,15 @@ import Petrobras from '../img/Petrobras.png';
 import SemBandeira from '../img/Sem Bandeira.png';
 import Ipiranga from "../img/Ipiranga.png";
 
+import { View } from '../view';
+
 const timestamp = serverTimestamp();
 
 
-const addPostos = async (nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude) => {
+const addPostos = async (idUser, nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude) => {
     try {
         await addDoc(collection(db, "postos"), {
-            id: "4",
+            id: idUser,
             nome: nomePosto,
             endereco: enderecoPosto,
             bandeira: bandeirasSelecionadas,
@@ -42,13 +44,13 @@ const addPostos = async (nomePosto, enderecoPosto, bandeirasSelecionadas, avaPos
     }
 }
 
-const updatePosto = async (pesquisaid, nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude) => {
+const updatePosto = async (idUser, pesquisaid, nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude) => {
     try {
         // Obtenha a referência do documento que deseja atualizar
         const docRefUp = doc(db, 'postos', pesquisaid);
         // Atualize os dados do documento
         await updateDoc(docRefUp, {
-            id: "8",
+            id: idUser,
             nome: nomePosto,
             endereco: enderecoPosto,
             bandeira: bandeirasSelecionadas,
@@ -100,17 +102,18 @@ const deletePosto = async (pesquisaid, nomePosto) => {
 }
 
 export function AddPosto() {
+    const idUser = View({ estado: 1 });
     const [pesquisaid, setPesquisa] = useState([])
     const [bandeirasSelecionadas, setBandeirasSelecionadas] = useState(['Sem Bandeira']);
 
     const [avaliacao, setAvaliacao] = useState(5);
 
-    const [nomePosto, setNomePosto] = useState("Nome Do Posto");
-    const [enderecoPosto, setEnderecoPosto] = useState("Endereço Do Posto");
+    const [nomePosto, setNomePosto] = useState("");
+    const [enderecoPosto, setEnderecoPosto] = useState("");
 
-    const [precoDieselPosto, setprecoDieselPosto] = useState(2.2);
-    const [precoEtanolPosto, setprecoEtanolPosto] = useState(2.3);
-    const [precoGasoPosto, setprecoGasoPosto] = useState(2.4);
+    const [precoDieselPosto, setprecoDieselPosto] = useState(0.0);
+    const [precoEtanolPosto, setprecoEtanolPosto] = useState(0.0);
+    const [precoGasoPosto, setprecoGasoPosto] = useState(0.0);
 
 
     function getIconUrlByBandeira(bandeira) {
@@ -148,7 +151,7 @@ export function AddPosto() {
                     const { latitude, longitude } = cordenadas;
                     let avaPosto = (avaliacao / 2);
                     let auxbandSelect = bandeirasSelecionadas;
-                    addPostos(nomePosto, enderecoPosto, auxbandSelect, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude);
+                    addPostos(idUser, nomePosto, enderecoPosto, auxbandSelect, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude);
 
                 }
 
@@ -181,7 +184,7 @@ export function AddPosto() {
                 if (cordenadas) {
                     const { latitude, longitude } = cordenadas;
                     let avaPosto = (avaliacao / 2);
-                    updatePosto(pesquisaid, nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude);
+                    updatePosto(idUser, pesquisaid, nomePosto, enderecoPosto, bandeirasSelecionadas, avaPosto, precoDieselPosto, precoEtanolPosto, precoGasoPosto, latitude, longitude);
 
                 }
 
@@ -246,15 +249,15 @@ export function AddPosto() {
 
     const handleprecoDieselPosto = (event) => {
         styleCard('290')
-        setprecoDieselPosto(event.target.value);
+        setprecoDieselPosto(Number(event.target.value));
     };
     const handleprecoEtanolPosto = (event) => {
         styleCard('290')
-        setprecoEtanolPosto(event.target.value);
+        setprecoEtanolPosto(Number(event.target.value));
     };
     const handleprecoGasoPosto = (event) => {
         styleCard('290')
-        setprecoGasoPosto(event.target.value);
+        setprecoGasoPosto(Number(event.target.value));
     };
 
 
@@ -360,11 +363,11 @@ export function AddPosto() {
                 </div>
                 <div className='linha'></div>
                 <div className='TextInput'>
-                    <input type="text" name="NomeDoPosto" id="NomePosto" className="TextDados" value={nomePosto} placeholder='Nome Do Posto' onChange={handleNomePosto} onClick={() => setNomePosto("")} />
+                    <input type="text" name="NomeDoPosto" id="NomePosto" className="TextDados" value={nomePosto} placeholder='Nome Do Posto' onChange={handleNomePosto} />
                 </div>
                 <div className='linha'></div>
                 <div className='TextInput'>
-                    <input type="text" name="EnderecoDoPosto" id="EnderecoPosto" className="TextDados" value={enderecoPosto} placeholder='Endereço Do Posto' onChange={handleNomeEndereco} onClick={() => setEnderecoPosto("")} />
+                    <input type="text" name="EnderecoDoPosto" id="EnderecoPosto" className="TextDados" value={enderecoPosto} placeholder='Endereço Do Posto' onChange={handleNomeEndereco}/>
                 </div>
                 <div className='avaliacaoRange'>
                     <span className="nomeDoPosto">Avaliação</span>
@@ -385,17 +388,17 @@ export function AddPosto() {
                 <div className='precosAdd'>
                     <div className='precosDados'>
                         <span className="nomeDoPosto">Preço</span>
-                        <input type="number" name="" id="input" className="inputPrecosAdd no-spinners" value={precoDieselPosto} onChange={handleprecoDieselPosto} placeholder='3.6' min="0.0" max="10" step="1" onClick={() => setprecoDieselPosto('')} />
+                        <input type="number" name="Diesel" id="input" className="inputPrecosAdd no-spinners" value={precoDieselPosto} onChange={handleprecoDieselPosto} placeholder='3.6' min="0.0" max="10" step="1" onClick={() => setprecoDieselPosto('')} />
                         <p className="descricaoText">Diesel</p>
                     </div>
                     <div className='precosDados'>
                         <span className="nomeDoPosto">Preço</span>
-                        <input type="number" name="" id="input" className="inputPrecosAdd no-spinners" value={precoEtanolPosto} onChange={handleprecoEtanolPosto} placeholder='3.6' min="0.0" max="10" step="1" onClick={() => setprecoEtanolPosto('')} />
+                        <input type="number" name="Etanol" id="input" className="inputPrecosAdd no-spinners" value={precoEtanolPosto} onChange={handleprecoEtanolPosto} placeholder='3.6' min="0.0" max="10" step="1" onClick={() => setprecoEtanolPosto('')} />
                         <p className="descricaoText">Etanol</p>
                     </div>
                     <div className='precosDados'>
                         <span className="nomeDoPosto">Preço</span>
-                        <input type="number" name="" id="input" className="inputPrecosAdd no-spinners" value={precoGasoPosto} onChange={handleprecoGasoPosto} placeholder='3.6' min="0.0" max="10" step="1" onClick={() => setprecoGasoPosto('')} />
+                        <input type="number" name="Gasolina" id="input" className="inputPrecosAdd no-spinners" value={precoGasoPosto} onChange={handleprecoGasoPosto} placeholder='3.6' min="0.0" max="10" step="1" onClick={() => setprecoGasoPosto('')} />
                         <p className="descricaoText">Gasolina</p>
                     </div>
 

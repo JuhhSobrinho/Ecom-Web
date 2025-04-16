@@ -84,9 +84,9 @@ export function MediaPreco() {
                     </div>
                 </div>
                 <div className='menor-maior'>
-                    <h1 className='text-media' id='text-maior'>{maiorPreco}</h1>
+                    <h1 className='text-media' id='text-maior'>{maiorPreco.toFixed(2)}</h1>
                     <div className="linha" id='line-media'></div>
-                    <h1 className='text-media' id='text-menor'>{menorPreco}</h1>
+                    <h1 className='text-media' id='text-menor'>{menorPreco.toFixed(2)}</h1>
                 </div>
                 <section className='tabela-precos'>
                     <div className='titulo-tabela'>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './splash.css';
+import logo from './logo.svg';
 
 const SplashScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,22 +16,16 @@ const SplashScreen = () => {
   if (isLoading) {
     return (
       <div className="splash-screen">
-        <div className='linhas1'></div>
-        <div className='linhas2'></div>
-        <div className='linhas3'></div>
-        <div className='linhas4'></div>
+  <div className="linhas1 fade-line line1"></div>
+  <div className="linhas2 fade-line line2"></div>
+  <div className="linhas3 fade-line line3"></div>
+  <div className="linhas4 fade-line line4"></div>
 
         <section className='icon'>
-        <lord-icon
-            src="https://cdn.lordicon.com/tdtlrbly.json"
-            trigger="loop"
-            delay="500"
-            state="in-jump-dynamic"
-            colors="primary:#1f7a8c,secondary:#bfdbf7"
-            style={{width:'250px', height:'250px'}}>
-          </lord-icon>          <h1 className='titulo'>ecom</h1>
+        <img src={logo} className="logo-drop" style={{width:'240px', height:'240px'}} alt="logoSite"/>
+          <h1 className='titulo'>ecom</h1>
         </section>
-
+        
       </div>
     );
   }

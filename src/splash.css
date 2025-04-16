@@ -1,12 +1,76 @@
+:root{
+  --cor-mapa-fundo-principal: #022b3a;
+  --cor-links: #a6bfd8;
+  --cor-popups: #1f7a8c;
+  --cor-shadow: #90d9e7;
+  --cor-texto-detalhes: white;
+}
+
 .splash-screen {
   z-index: 3;
   margin: 0;
   width: 100%;
-  background: #1f7a8c;
+  background: var(--cor-popups);
   width: 100vw;
   height: 100vh;
   position: fixed;
   transition: opacity   1.0s ease;
+  display: flex;
+  justify-content: center;
+}
+
+@keyframes dropBounce {
+  0% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.logo-drop {
+  animation: dropBounce 1s ease-out;
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropBounce {
+  0% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.fade-line {
+  animation: fadeSlideIn 0.5s ease forwards;
+  opacity: 0;
 }
 
 .show {
@@ -24,12 +88,12 @@
   text-transform: uppercase;
   font-weight: 400;
   line-height: normal;
-  color: #ffffff;
+  color: var(--cor-texto-detalhes);
   margin: 0;
   padding-left: 40px;
   padding-right: 40px;
   border-bottom: 2px solid;
-  border-color: #ffffff;
+  border-color: var(--cor-texto-detalhes);
 }
 
 .icon {
@@ -41,95 +105,96 @@
   margin: 0;
   position: fixed;
   width: 100%;
-  z-index: 9999;
+  z-index: 3;
   border-radius: 5px;
 }
 
+.line1 { animation-delay: 0.1s; }
+.line2 { animation-delay: 0.3s; }
+.line3 { animation-delay: 0.5s; }
+.line4 { animation-delay: 0.7s; }
+
+.logo-drop {
+  animation: dropBounce 1s ease-out forwards;
+  opacity: 0;
+  animation-delay: 1s; /* só aparece depois das linhas */
+}
+
+
+
 .linhas1 {
-  width: 100vw;
-  height: 169.049px;
-  transform: rotate(120deg);
-  top: 280px;
-  left: -80px;
+  width: 90%;
+  height: 220px;
+  top: 32%;
   position: absolute;
-  background: rgba(2, 43, 58, 0.96);
+  border-radius: 5px 5px 0px 0px;
+  background: var(--cor-mapa-fundo-principal);
 }
 
 .linhas2 {
-  background: rgba(191, 219, 247, 0.8);
-  width: 100vw;
-  height: 69.166px;
-  transform: rotate(120deg);
-  top: 300px;
-  left: 100px;
+  background:var(--cor-links);
+  width: 90%;
+  height: 77px;
+  top: 59%;
   position: absolute;
   flex-shrink: 0;
 }
 
 .linhas3 {
-  width: 100vw;
-  height: 92.068px;
-  transform: rotate(120deg);
-  top: 400px;
-  left:900px;
+  width: 90%;
+  height: 25px;
+  top: 70%;
   position: absolute;
   flex-shrink: 0;
-  background: rgba(2, 43, 58, 0.96);
+  background: var(--cor-mapa-fundo-principal);
 }
 
 .linhas4 {
-  background: rgba(191, 219, 247, 0.8);
-  width: 220.117px;
-  height: 36.224px;
-  transform: rotate(120deg);
-  top:30px;
-  left: -90px;
+  background:var(--cor-links);
+  width: 90%;
+  height: 35px;
+  top: 75%;
   position: absolute;
+  border-radius: 0px 0px 5px 5px;
   flex-shrink: 0;
 }
 
 
 @media screen and (max-width: 750px) {
   .linhas1 {
-    width: 1000px;
-    height: 169.049px;
-    transform: rotate(120deg);
-    top: 60%;
-    left: -60%;
+    width: 90%;
+    height: 220px;
+    top: 32%;
     position: absolute;
-    background: rgba(2, 43, 58, 0.96);
+    border-radius: 5px 5px 0px 0px;
+    background: var(--cor-mapa-fundo-principal);
   }
   
   .linhas2 {
-    background: rgba(191, 219, 247, 0.8);
-    width: 1100px;
-    height: 69.166px;
-    transform: rotate(120deg);
-    top: 40%;
-    left: -80%;
+    background:var(--cor-links);
+    width: 90%;
+    height: 77px;
+    top: 59%;
     position: absolute;
     flex-shrink: 0;
   }
   
   .linhas3 {
-    width: 100vw;
-    height: 92.068px;
-    transform: rotate(120deg);
-    top: 400px;
-    left:900px;
+    width: 90%;
+    height: 25px;
+    top: 70%;
     position: absolute;
     flex-shrink: 0;
-    background: rgba(2, 43, 58, 0.96);
+    background: var(--cor-mapa-fundo-principal);
   }
   
   .linhas4 {
-    background: rgba(191, 219, 247, 0.8);
-    width: 220.117px;
-    height: 36.224px;
-    transform: rotate(120deg);
-    top:30px;
-    left: -90px;
+    background:var(--cor-links);
+    width: 90%;
+    height: 35px;
+    top: 75%;
     position: absolute;
+    border-radius: 0px 0px 5px 5px;
     flex-shrink: 0;
   }
   
