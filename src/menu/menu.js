@@ -8,12 +8,14 @@ import { UserConfig } from "../user/user";
 import { MediaPreco } from "../media/media";
 import { Sobre } from '../user/sobre';
 
-import mediaFt from '../img/media.svg';
-import postoFt from '../img/posto.svg';
-import addFt from '../img/add.svg';
-import salvoFt from '../img/salvo.svg';
-import configFt from '../img/config.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGasPump, faCog, faPlus, faBookmark, faChartBar } from '@fortawesome/free-solid-svg-icons';
 
+const postoFt = <FontAwesomeIcon icon={faGasPump} style={{ color: "#90d9e7" }} />;
+const addFt = <FontAwesomeIcon icon={faPlus} style={{ color: "#90d9e7" }} />;
+const salvoFt = <FontAwesomeIcon icon={faBookmark} style={{ color: "#90d9e7" }} />;
+const configFt = <FontAwesomeIcon icon={faCog} style={{ color: "#90d9e7" }} />;
+const mediaFt = <FontAwesomeIcon icon={faChartBar} style={{ color: "#90d9e7" }} />;
 
 
 
