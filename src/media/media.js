@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import {firePosto} from '../controller/controller';
 import "../style/global.css";
 
+
 import Shell from '../img/shell.png';
 import SeteEstrelas from '../img/seteEstrelas.png';
-import Petrobras from '../img/petrobras.png';
-import Ipiranga from "../img/ipiranga.png";
-import SemBandeira from '../img/sem Bandeira.png';
+import Petrobras from '../img/Petrobras.png';
+import Ipiranga from "../img/Ipiranga.png";
+import SemBandeira from '../img/Sem Bandeira.png';
 
 export function MediaPreco() {
     const [postos, setPostos] = useState([]);
