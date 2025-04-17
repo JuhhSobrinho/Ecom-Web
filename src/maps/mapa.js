@@ -15,7 +15,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import copyFt from '../img/copy.svg';
 import Shell from '../img/shell.png';
-import SeteStrelas from '../img/seteEstrelas.png';
+import SeteEstrelas from '../img/seteEstrelas.png';
 import Petrobras from '../img/petrobras.png';
 import Ipiranga from "../img/ipiranga.png";
 import SemBandeira from '../img/sem Bandeira.png';
@@ -38,7 +38,7 @@ export function Mapa() {
             case 'Shell':
                 return Shell;
             case 'SeteEstrelas':
-                return SeteStrelas;
+                return SeteEstrelas;
             case 'Petrobras':
                 return Petrobras;
             case 'Ipiranga':
