@@ -5,9 +5,12 @@ import "../style/global.css";
 
 import Shell from '../img/shell.png';
 import SeteEstrelas from '../img/seteEstrelas.png';
-import Petrobras from '../img/Petrobras.png';
-import Ipiranga from "../img/Ipiranga.png";
-import SemBandeira from '../img/Sem Bandeira.png';
+
+const Petrobras = '/Petrobras.png';
+const Ipiranga = '/Ipiranga.png';
+const SemBandeira = '/Sem Bandeira.png';
+
+
 
 export function MediaPreco() {
     const [postos, setPostos] = useState([]);
