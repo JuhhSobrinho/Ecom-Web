@@ -5,12 +5,13 @@ import { db } from "../model/model";
 import { View } from '../view';
 import "../style/global.css";
 
+
 import copyFt from '../img/copy.svg';
 import Shell from '../img/shell.png';
 import SeteEstrelas from '../img/seteEstrelas.png';
-import Petrobras    from '../img/Petrobras.png';
-import SemBandeira from '../img/Sem Bandeira.png';
-import Ipiranga from "../img/Ipiranga.png";
+import Petrobras from '../img/petrobras.png';
+import Ipiranga from "../img/ipiranga.png";
+import SemBandeira from '../img/sem Bandeira.png';
 
 const addSalvoBd = async (dados, uidAtual) => {
   const minhaColecao = doc(db, 'users', uidAtual);
