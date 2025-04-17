@@ -8,11 +8,11 @@ import { UserConfig } from "../user/user";
 import { MediaPreco } from "../media/media";
 import { Sobre } from '../user/sobre';
 
-import mediaFt from '/media.svg';
-import postoFt from '/posto.svg';
-import addFt from '/add.svg';
-import salvoFt from '/salvo.svg';
-import configFt from '/config.svg';
+const mediaFt = "/media.svg";
+const postoFt = '/posto.svg';
+const addFt = '/add.svg';
+const salvoFt = '/salvo.svg';
+const configFt = '/config.svg';
 
 
 
