@@ -1,7 +1,7 @@
 import React from 'react';
 import 'leaflet/dist/leaflet.css';
 import "../style/global.css";
-import logo from '../logo.svg';
+const logo = '/logo.svg';
 
 export function Sobre() {
     return (
