@@ -1,10 +1,10 @@
 :root{
   --cor-mapa-fundo-principal: #022b3a;
-  --cor-links: #a6bfd8;
+  --cor-links: #96adc4;
   --cor-popups: #1f7a8c;
   --cor-shadow: #90d9e7;
   --cor-texto-detalhes: rgb(196, 196, 196);
-  --cor-titulo-h-texto: #dadada;
+  --cor-titulo-h-texto: #ffffff;
 }
 
 .splash-screen {
