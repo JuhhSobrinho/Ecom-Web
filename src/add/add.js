@@ -7,9 +7,7 @@ import { } from "../maps/mapa.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 import { View } from '../view';
-
 
 import Shell from '../img/shell.png';
 import SeteEstrelas from '../img/seteEstrelas.png';
@@ -17,7 +15,6 @@ import SeteEstrelas from '../img/seteEstrelas.png';
 const Petrobras = '/Petrobras.png';
 const Ipiranga = '/Ipiranga.png';
 const SemBandeira = '/Sem Bandeira.png';
-
 
 
 const timestamp = serverTimestamp();
