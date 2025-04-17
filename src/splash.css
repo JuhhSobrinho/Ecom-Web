@@ -3,7 +3,7 @@
   --cor-links: #a6bfd8;
   --cor-popups: #1f7a8c;
   --cor-shadow: #90d9e7;
-  --cor-texto-detalhes: rgb(196, 196, 196);
+  --cor-texto-detalhes: rgb(122, 122, 122);
 }
 
 .splash-screen {
@@ -94,7 +94,6 @@
   padding-right: 40px;
   border-bottom: 2px solid;
   border-color: var(--cor-texto-detalhes);
-  color: var(--cor-texto-detalhes);
 }
 
 .icon {
