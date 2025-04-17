@@ -24,7 +24,7 @@ const SplashScreen = () => {
 
         <section className='icon'>
         <img src={logo} className="logo-drop" style={{width:'240px', height:'240px'}} alt="logoSite"/>
-          <h1 className='titulo'>ecom</h1>
+          <h1 className='titulo-h1-ecom'>ecom</h1>
         </section>
         
       </div>
