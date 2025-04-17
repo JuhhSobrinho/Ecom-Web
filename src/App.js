@@ -14,7 +14,7 @@ function App() {
     //    <Router basename="/Ecom-Web"> github pages
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/" />} />
+        <Route path="/" element={<Navigate to="/maps/mapa" />} />
         <Route path="/splash" element={<SplashScreen />} />
         <Route path="/login" element={<LoginEntra />} />
         <Route path="/signUp" element={<SignUpCadastro />} />
