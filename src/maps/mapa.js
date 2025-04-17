@@ -11,6 +11,8 @@ import { MenuGuias } from "../menu/menu";
 import { firePosto } from "../controller/controller";
 import { ToastContainer, toast } from 'react-toastify';
 
+
+
 import copyFt from '../img/copy.svg';
 import Shell from '../img/shell.png';
 import SeteStrelas from '../img/seteEstrelas.png';
