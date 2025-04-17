@@ -11,7 +11,7 @@ function App() {
 
 
   return (
-    <Router basename="/Ecom-Web">
+    <Router basename="/Ecom-Postos">
       <Routes>
         <Route path="/" element={<Navigate to="/maps/mapa" />} />
         <Route path="/splash" element={<SplashScreen />} />
