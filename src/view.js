@@ -7,6 +7,9 @@ export function View({ estado = 0 }) {
   const [userUid, setSerUid] = useState('');
   const navigate = useNavigate();
 
+  console.log("view tá vendo");
+  
+
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {

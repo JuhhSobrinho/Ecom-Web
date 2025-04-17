@@ -3,6 +3,8 @@ import './splash.css';
 import logo from './logo.svg';
 
 const SplashScreen = () => {
+  console.log("splash");
+  
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
