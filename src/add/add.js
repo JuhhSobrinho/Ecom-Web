@@ -7,13 +7,18 @@ import { } from "../maps/mapa.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Shell from '../img/shell.png';
-import SeteEstrelas from '../img/seteEstrelas.png';
-import Petrobras from '../img/Petrobras.png';
-import SemBandeira from '../img/Sem Bandeira.png';
-import Ipiranga from "../img/Ipiranga.png";
 
 import { View } from '../view';
+
+
+import Shell from '../img/shell.png';
+import SeteEstrelas from '../img/seteEstrelas.png';
+
+const Petrobras = '/Petrobras.png';
+const Ipiranga = '/Ipiranga.png';
+const SemBandeira = '/Sem Bandeira.png';
+
+
 
 const timestamp = serverTimestamp();
 
