@@ -1,6 +1,6 @@
 :root{
   --cor-mapa-fundo-principal: #022b3a;
-  --cor-links: #96adc4;
+  --cor-line-clara: #8598ac;
   --cor-popups: #1f7a8c;
   --cor-shadow: #90d9e7;
   --cor-texto-detalhes: rgb(196, 196, 196);
@@ -134,7 +134,7 @@
 }
 
 .linhas2 {
-  background:var(--cor-links);
+  background:var(--cor-line-clara);
   width: 90%;
   height: 77px;
   top: 59%;
@@ -152,7 +152,7 @@
 }
 
 .linhas4 {
-  background:var(--cor-links);
+  background:var(--cor-line-clara);
   width: 90%;
   height: 35px;
   top: 75%;
@@ -173,7 +173,7 @@
   }
   
   .linhas2 {
-    background:var(--cor-links);
+    background:var(--cor-line-clara);
     width: 90%;
     height: 77px;
     top: 59%;
@@ -191,7 +191,7 @@
   }
   
   .linhas4 {
-    background:var(--cor-links);
+    background:var(--cor-line-clara);
     width: 90%;
     height: 35px;
     top: 75%;
