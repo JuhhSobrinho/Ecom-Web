@@ -1,5 +1,7 @@
 # ⛽ Ecom-Web
 
+![Mapa com os postos de combustível cadastrados no ECOM](docs/tela-principal.webp)
+
 **Ecom-Web** é uma aplicação web que permite aos usuários localizar postos de combustíveis em um mapa interativo, visualizar preços atualizados, avaliações e favoritar seus postos preferidos. Desenvolvido com React.js e outras tecnologias modernas, o projeto oferece uma experiência responsiva e amigável.
 
 ## 🚀 Funcionalidades
